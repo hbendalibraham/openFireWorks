@@ -1,0 +1,51 @@
+<div style="height: 76px"></div>
+
+
+<a href="#!/profile/0" class="ui primary button">Nouveau utilisateur</a>
+<div class="ui icon input focus">
+  <i class="search icon"></i>
+  <input type="text" placeholder="Search..." ng-model="q">
+</div>
+
+<table class="ui selectable single line blue table">
+  <thead>
+    <th>username</th>
+    <th>Mobile</th>
+    <th>Tel</th>
+    <th>policy</th>
+    <th>date</th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="ele in $parent.user_list | filter:q">
+      <td>
+        <a href="#!/profile/@{{ele.username}}">
+          <div class="ui horizontal list">
+            <div class="item">
+              <img class="ui mini circular image" src="https://s.gravatar.com/avatar/{{ele.gravatar}}?s=36&d=mm">
+              <div class="content">
+                <div class="ui sub header">{{ele.firstname}} {{ele.lastname}}</div>
+                <sub>@{{ele.username}}</sub> - {{ele.department}}
+              </div>
+            </div>
+          </div>
+        </a>
+      </td>
+      <td>{{ele.mobile}}</td>
+      <td>{{ele.tel}}</td>
+      <td>
+      
+        <i class="la la-shield      s1" ng-class="ele.policy.level==1  ?'en':'di'" title="Administrateur"></i>
+        <i class="la la-user        s1" ng-class="ele.policy.level==2  ?'en':'di'" title="Utilisateur"></i>
+        <i class="la la-user-plus   s1" ng-class="ele.policy.level==3  ?'en':'di'" title="Utilisateur avancer"></i>
+
+        <i class="la la-comments    s1" ng-class="ele.policy.commant   ?'en':'di'" title="Commontaire"></i>
+        <i class="la la-envelope    s1" ng-class="ele.policy.mail      ?'en':'di'" title="Use internal mail"></i>
+        <i class="la la-flask       s1" ng-class="ele.policy.beta      ?'en':'di'" title="Beta tester"></i>
+        <i class="la la-unlock      s1" ng-class="ele.policy.lock      ?'en':'di'" title="Disabled compte"></i>
+
+      </td>
+      <td>{{ele.date_login | date:"HH:mm dd/MM/yyyy"}}</td>
+    </tr>
+  </tbody>
+</table>
+  

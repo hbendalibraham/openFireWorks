@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title>#openAssurance</title>
+  <link rel="icon"       href="img/icon.ico"/>
+
+  <!-- JQuery -->
+  <script src="js/jquery/jquery-3.2.1.js"></script>
+  <script src="js/jquery/jquery.tablesort.min.js"></script>
+  <!--script src="js/markdown.min.js"></script-->
+  
+  <!--  Angular  -->
+  <script src="js/angular/angular.js"></script>
+  <script src="js/angular/i18n/angular-locale_fr-fr.js"></script>
+  <script src="js/angular/angular-route.js"></script>
+
+  <!--  Semantic-UI  -->
+  <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css"/>
+  <script src="semantic/semantic.min.js"></script>
+
+  <!--  line-awesome.css  -->
+  <link rel="stylesheet" href="css/line-awesome.css"/>
+
+  <link rel="stylesheet" href="css/my.css"/>
+
+
+
+  <style>
+    input, button, {border-radius: 2px !important;}
+    body{
+      background:url(img/assurance.jpg) no-repeat center fixed;
+      background-size: cover; /* version standardisée */
+      -webkit-background-size: cover; /* pour anciens Chrome et Safari */
+      margin: 20px 50px;
+      overflow:hidden;
+    }
+  </style>
+</head>
+<body class="back-g">
+    
+  <div class="ui raised card">
+    <div class="content">
+      <h1>#<b>open</b>Assurance</h1>
+      <div class="meta">
+        <!--span class="category">Animals</span-->
+      </div>
+      <div class="description">
+        
+        <form method="post" autocomplete="off" class="ui form">
+          
+          <div class="ui center aligned field">
+            <img class="ui circular tiny image" src="img/mm.png">
+          </div>
+
+          <div class="ui field">
+            <div class="ui fluid icon input">
+              <input type="text" name="username" placeholder="Nom utilisateur / email" size="15" value>
+              <i class="user icon"></i>
+            </div>
+          </div>
+
+          <div class="ui field">
+            <div class="ui fluid icon input">
+              <input type="password" name="password" placeholder="Mot de passe" size="15" value>
+              <i class="lock icon"></i>
+            </div>
+          </div>
+
+          <div>
+            <button class="ui fluid primary button">Signin</button>
+          </div>
+
+        </form>
+        
+      </div>
+    </div>
+    <div class="extra content">
+
+      <div class="left floated author">
+        <label><input type="checkbox"> Remember Me</label> / <a href="#">Forgot Password?</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    
+    $('.ui.raised.card')
+      .transition('fade in')
+    ;
+    
+  </script>
+
+
+</body>
+</html>

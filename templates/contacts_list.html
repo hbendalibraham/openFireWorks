@@ -1,0 +1,32 @@
+<div style="height: 76px"></div>
+
+
+<a href="#!/contact/0" class="ui primary button">Nouveau contact</a>
+<div class="ui icon input focus">
+  <i class="search icon"></i>
+  <input type="text" placeholder="Search..." ng-model="q">
+</div>
+
+<table class="ui selectable single line blue table">
+  <thead>
+    <th>Nom / Réson sociale</th>
+    <th>Tel</th>
+    <th>Fax</th>
+    <th>Mobile</th>
+    <th>Email</th>
+    <th>Famille</th>
+    <th>Credit</th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="ele in $parent.contacts_list | filter:q">
+      <td> <a href="#!/contact/{{ele.id}}"> {{ele.name}} </a> </td>
+      <td>{{ele.tel}}</td>
+      <td>{{ele.fax}}</td>
+      <td>{{ele.mobile}}</td>
+      <td>{{ele.email}}</td>
+      <td>{{ele.type=='F'?'Fournisseur':ele.type=='C'?'Client':ele.type=='D'?'Divers':'x'}}</td>
+      <td class="right aligned" ng-class="{'positive':ele.credit>0, 'error':ele.credit<0}">{{ele.credit | currency:"DA"}}</td>
+    </tr>
+  </tbody>
+</table>
+  

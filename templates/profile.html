@@ -1,0 +1,207 @@
+<div style="height: 76px"></div>
+
+<form class="ui form" name="form" >
+  <div class="ui top attached secondary segment">
+    <input type="hidden" name="id" ng-model="profile.id">
+    
+    <!--img src="{{profile.gravatar}}?s=180&d=mm"-->
+    <div class="ui center aligned basic segment">
+      <img src="img/image.png" data-src="https://s.gravatar.com/avatar/abea01f5957411556b300b80cece3db7" height="160">
+      <h2>{{profile.firstname}} {{profile.lastname}}</h2>
+      @{{profile.username}} - <a href="mailto:{{profile.email}}"><i class="mail icon" ng-show="profile.email"></i> {{profile.email}}</a>
+      <br>
+      {{profile.address}}
+    </div>
+
+
+    <p></p>
+  
+  </div>
+  <div class="ui attached segment">
+
+
+    <p>
+      <div class="ui blue ribbon label">
+        <i class="unlock alternate icon"></i> Identification
+      </div>
+    </p>
+
+    <div class="equal width fields">
+      <div class="field">
+        <label> Nom d'utilisateur </label>
+        <div class="ui left corner labeled input rmv_corner">
+          <input type="text" placeholder="Nom d'utilisateur" id="username" ng-model="profile.username" min="3" max="20" required>
+          <div class="ui left corner label">
+            <i class="inverted asterisk icon"></i>
+          </div>
+        </div>
+        <div class="ui pointing red inverted label" ng-show="form.username.$invalid && form.username.$touched">
+          Choisir un nom d'utilisateur entre 3 et 20 character !
+        </div>
+      </div>
+      <div class="field">
+        <label>Mot de passe</label>
+        <div class="ui left corner labeled input rmv_corner">
+          <input type="password" placeholder="Mot de passe" id="password" ng-model="profile.password" min="6" max="20" pattern=".{6,}" required >
+          <div class="ui left corner label">
+            <i class="inverted asterisk icon"></i>
+          </div>
+        </div>
+        <div class="ui pointing red inverted label" ng-show="form.password.$invalid && form.password.$touched">
+          Choisir un mot de passe entre 6 et 20 character !
+        </div>
+      </div>
+    </div>
+
+    <p>
+      <div class="ui blue ribbon label"><i class="user icon"></i> profile</div>
+    </p>
+    
+    <div class="equal width fields">
+      <div class="field">
+        <label>Nom</label>
+        <div class="ui left corner labeled input">
+          <input type="text" ng-model="profile.firstname" placeholder="Nom" required>
+          <div class="ui left corner label">
+            <i class="inverted asterisk icon"></i>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Prénom</label>
+        <div class="ui left corner labeled input">
+          <input type="text" ng-model="profile.lastname" placeholder="Prénom" required>
+          <div class="ui left corner label">
+            <i class="inverted asterisk icon"></i>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>EMail</label>
+        <div class="ui left corner labeled input">
+          <input type="email" placeholder="EMail" ng-model="profile.email" name="email" required>
+          <div class="ui left corner label">
+            <i class="inverted asterisk icon"></i>
+          </div>
+        </div>
+        <div class="ui pointing red inverted label" ng-show="form.email.$invalid && form.email.$touched">
+          email non valide!
+        </div>
+      </div>
+    </div>
+
+
+    <div class="field">
+
+      <div class="two fields">
+        <div class="field">
+          <label>Chantier / Département</label>
+          <input type="text" ng-model="profile.department" placeholder="Chantier / Département ">
+        </div>
+
+        <div class="field">
+          <label>Directeur</label>
+          <input type="text" ng-model="profile.dir" placeholder="Directeur">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="equal width fields">
+
+        <div class="field">
+          <label>Mobile</label>
+          <input type="text" ng-model="profile.mobile" placeholder="Mobile">
+        </div>
+
+        <div class="field">
+          <label>Tel</label>
+          <input type="text" ng-model="profile.tel" placeholder="Tel">
+        </div>
+
+        <div class="field">
+          <label>Fax</label>
+          <input type="text" ng-model="profile.fax" placeholder="Fax">
+        </div>
+
+    </div>
+
+    <div class="field">
+      <label>Address</label>
+      <textarea ng-model="profile.address"></textarea>
+    </div>
+
+    <div class="inline fields">
+      <div class="field">
+        <label>Position GEO</label>
+        <input type="text" ng-model="profile.lat" placeholder="Latitude">
+      </div>
+
+      <div class="field">
+        <input type="text" ng-model="profile.long" placeholder="Longitude">
+      </div>
+
+    </div>
+
+
+    <div class="field">
+      <label>Signature</label>
+      <textarea ng-model="profile.signature"></textarea>
+    </div>
+
+
+    <div ng-include="'api/html.php?policyProfile'"></div>
+
+    <div class="inline field" id="terms">
+      <div class="ui checkbox">
+        <input name="terms" ng-model="terms" type="checkbox" required>
+        <label>I agree to the terms and conditions</label>
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+  <div class="ui bottom attached right aligned secondary segment">
+    
+    <div class="ui info message" ng-show="msg">
+      <i class="close icon"></i>
+      <ul class="list">
+        {{msg}}
+      </ul>
+    </div>
+
+    <div class="ui cancel button" ng-click="delete()" ng-class="{'loading':spiner_del}">
+      <i class="remove icon"></i>
+      Supprimer l'utilisateur
+    </div>
+    <button class="ui green ok button" ng-click="save()" type="submit" ng-class="{'loading':spiner_save}">
+      <i class="checkmark icon"></i>
+      Enregistrer
+    </button>
+  </div>
+  
+  <!--div class="ui attached error message"></div-->
+
+  <p></p>
+</form>
+
+
+<div class="ui mini modal">
+  <div class="header">{{profile.firstname}} {{profile.lastname}}</div>
+  <div class="content">
+    <p>Etre vous sure de vouloir supprimer ce profile ?</p>
+  </div>
+  <div class="actions">
+    <div class="ui red cancel inverted button">
+      <i class="remove icon"></i>
+      Annuler
+    </div>
+    <div class="ui green ok inverted button">
+      <i class="checkmark icon"></i>
+      Supprimer
+    </div>
+  </div>
+</div>

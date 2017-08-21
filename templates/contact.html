@@ -1,0 +1,169 @@
+<div style="height: 76px"></div>
+
+<form class="ui form" name="form" >
+  <div class="ui top attached secondary segment">
+    <input type="hidden" name="id" ng-model="contact.id">
+    
+    <!--img src="{{contact.gravatar}}?s=180&d=mm"-->
+    <div class="ui center aligned basic segment">
+      <img src="img/image.png" data-src="https://s.gravatar.com/avatar/abea01f5957411556b300b80cece3db7" height="160">
+      <h2>{{contact.nom}}</h2>
+      <a href="mailto:{{contact.email}}"><i class="mail icon" ng-show="contact.email"></i> {{contact.email}}</a>
+      <br>
+      {{contact.address}}
+    </div>
+
+
+    <p></p>
+  
+  </div>
+  <div class="ui attached segment">
+
+    <p>
+      <div class="ui blue ribbon label"><i class="user icon"></i> Contact</div>
+    </p>
+    
+    <div class="field">
+      <label>Nom / Réson sociale</label>
+      <div class="ui left corner labeled input">
+        <input type="text" ng-model="contact.name" placeholder="Nom ou Réson sociale" required>
+        <div class="ui left corner label">
+          <i class="inverted asterisk icon"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="equal width fields">
+      <div class="field">
+        <label>Tel</label>
+        <input type="tel" placeholder="Telephone" ng-model="contact.tel">
+      </div>
+      <div class="field">
+        <label>Fax</label>
+        <input type="tel" placeholder="Fax" ng-model="contact.fax">
+      </div>
+      <div class="field">
+        <label>Mobile</label>
+        <input type="tel" placeholder="Mobile" ng-model="contact.mobile">
+      </div>
+      <div class="field">
+        <label>EMail</label>
+        <input type="email" placeholder="E-Mail" ng-model="contact.email">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Address</label>
+      <textarea ng-model="contact.address"></textarea>
+    </div>
+
+
+
+    <div class="equal width fields">
+
+      <div class="field">
+        <label>Client / Fournisseur</label>
+        <select class="ui dropdown" id="type_contact" required>
+          <option value="">Type de contact</option>
+          <option value="F">Fournisseur</option>
+          <option value="C">Client</option>
+          <option value="D">Divers</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>CREDIT</label>
+        <div class="ui right labeled input">
+          <input type="number" step="0.01" placeholder="" ng-model="contact.credit" stringToNumber>
+          <div class="ui label" ng-class="{'green':contact.credit>0, 'red':contact.credit<0}">
+            DA
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="field">
+      <label>Note</label>
+      <textarea ng-model="contact.note"></textarea>
+    </div>
+
+    <p>
+      <div class="ui blue ribbon label"><i class="call icon"></i> Plus</div>
+    </p>
+
+    <div class="equal width fields" ng-repeat="ele in contact.more_contact">
+      <div class="field">
+        <label>Nom à contacter</label>
+        <input type="text" placeholder="Nom à contacter" ng-model="ele.name">
+      </div>
+      <div class="field">
+        <label>Tel</label>
+        <input type="tel" placeholder="Telephone" ng-model="ele.tel">
+      </div>
+      <div class="field">
+        <label>Fax</label>
+        <input type="tel" placeholder="Fax" ng-model="ele.fax">
+      </div>
+      <div class="field">
+        <label>Mobile</label>
+        <input type="tel" placeholder="Mobile" ng-model="ele.mobile">
+      </div>
+      <div class="field">
+        <label>EMail</label>
+        <input type="email" placeholder="E-Mail" ng-model="ele.email">
+      </div>
+    </div>
+    
+    <div class="ui right aligned basic segment">
+      <a class="mini ui button" ng-click="add_number()">
+        <i class="la la-plus"></i> Ajouter un numéro
+      </a>
+    </div>
+
+
+  </div>
+
+
+  <div class="ui bottom attached right aligned secondary segment">
+    
+    <div class="ui info message" ng-show="msg">
+      <i class="close icon"></i>
+      <ul class="list">
+        {{msg}}
+      </ul>
+    </div>
+
+    <div class="ui cancel button" ng-click="delete()" ng-class="{'loading':spiner_del}">
+      <i class="remove icon"></i>
+      Supprimer le contact
+    </div>
+    <button class="ui green ok button" ng-click="save()" type="submit" ng-class="{'loading':spiner_save}">
+      <i class="checkmark icon"></i>
+      Enregistrer
+    </button>
+  </div>
+  
+  <!--div class="ui attached error message"></div-->
+
+  <p></p>
+</form>
+
+
+<div class="ui mini modal">
+  <div class="header">{{profile.firstname}} {{profile.lastname}}</div>
+  <div class="content">
+    <p>Etre vous sure de vouloir supprimer ce contacts ?</p>
+  </div>
+  <div class="actions">
+    <div class="ui red cancel inverted button">
+      <i class="remove icon"></i>
+      Annuler
+    </div>
+    <div class="ui green ok inverted button">
+      <i class="checkmark icon"></i>
+      Supprimer
+    </div>
+  </div>
+</div>
