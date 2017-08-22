@@ -1,6 +1,6 @@
 <div style="height: 76px"></div>
 
-<form class="ui form" name="form" >
+<form class="ui form" name="form">
   <div class="ui top attached secondary segment">
     <input type="hidden" name="id" ng-model="profile.id">
     
@@ -101,7 +101,7 @@
 
         <div class="field">
           <label>Directeur</label>
-          <input type="text" ng-model="profile.dir" placeholder="Directeur">
+          <input type="text" ng-model="profile.directeur" placeholder="Directeur">
         </div>
       </div>
 
@@ -130,19 +130,6 @@
       <label>Address</label>
       <textarea ng-model="profile.address"></textarea>
     </div>
-
-    <div class="inline fields">
-      <div class="field">
-        <label>Position GEO</label>
-        <input type="text" ng-model="profile.lat" placeholder="Latitude">
-      </div>
-
-      <div class="field">
-        <input type="text" ng-model="profile.long" placeholder="Longitude">
-      </div>
-
-    </div>
-
 
     <div class="field">
       <label>Signature</label>

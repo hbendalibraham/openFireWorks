@@ -12,8 +12,9 @@ function echo_html($element){
 // ==  policyProfile  ===================================================================================   
   case 'policyProfile':
     if($fw->policy('level') == "1")
-    echo '<div class="ui red ribbon label">
-    <i class="shield icon"></i> Les droit d\'acc&egrave;s
+    echo <<< ACL
+  <div class="ui red ribbon label">
+    <i class="shield icon"></i> Les droit d'acc&egrave;s
   </div>
   <div class="ui divided selection list">
     <div class="item">
@@ -44,6 +45,122 @@ function echo_html($element){
         <label>User advence</label>
       </div>
     </div>
+
+    <div class="item">
+      <i class="la la-certificate s1 en"></i>
+      <div class="ui checkbox">
+        <input type="checkbox" name="policy_manual_qse" ng-model="profile.policy.manual_qse">
+        <label>Manual QSE</label>
+      </div>
+    </div>
+
+    <div class="item">
+      <i class="la la-folder-open s1 en"></i>
+      <div class="ui checkbox">
+        <input type="checkbox" name="policy_contrats" ng-model="profile.policy.contrats">
+        <label>List des contrats</label>
+      </div>
+    </div>
+
+    <div class="item">
+      <i class="la la-ellipsis-v s1 en"></i>
+      <div class="ui checkbox">
+        <input type="checkbox" name="policy_contrat_pr_al_c" ng-model="profile.policy.contrat_pr_al_c">
+        <label>Consulter</label>
+      </div>
+      <div class="ui checkbox">
+        <input type="checkbox" name="policy_contrat_pr_al_m" ng-model="profile.policy.contrat_pr_al_m">
+        <label>Modifer</label>
+      </div>
+      | Procurment AL
+    </div>
+
+    <div class="item">
+      <i class="la la-ellipsis-v s1 en"></i>
+      <div class="ui checkbox">
+        <input type="checkbox" name="policy_contrat_pr_im_c" ng-model="profile.policy.contrat_pr_im_c">
+        <label>Consulter</label>
+      </div>
+      <div class="ui checkbox">
+        <input type="checkbox" name="policy_contrat_pr_im_m" ng-model="profile.policy.contrat_pr_im_m">
+        <label>Modifer</label>
+      </div>
+      | Procurment Importation 
+    </div>
+
+    <div class="item">
+      <i class="la la-ellipsis-v s1 en"></i>
+      <div class="ui checkbox">
+        <input type="checkbox" name="policy_contrat_st_bt_c" ng-model="profile.policy.contrat_st_bt_c">
+        <label>Consulter</label>
+      </div>
+      <div class="ui checkbox">
+        <input type="checkbox" name="policy_contrat_st_bt_m" ng-model="profile.policy.contrat_st_bt_m">
+        <label>Modifer</label>
+      </div>
+      | Sous-Traitances BT
+    </div>
+
+    <div class="item">
+      <i class="la la-ellipsis-v s1 en"></i>
+      <div class="ui checkbox">
+        <input type="checkbox" name="policy_contrat_st_gc_c" ng-model="profile.policy.contrat_st_gc_c">
+        <label>Consulter</label>
+      </div>
+      <div class="ui checkbox">
+        <input type="checkbox" name="policy_contrat_st_gc_m" ng-model="profile.policy.contrat_st_gc_m">
+        <label>Modifer</label>
+      </div>
+      | Sous-Traitances GC
+    </div>
+
+    <div class="item">
+      <i class="la la-ellipsis-v s1 en"></i>
+      <div class="ui checkbox">
+        <input type="checkbox" name="policy_contrat_et_c" ng-model="profile.policy.contrat_et_c">
+        <label>Consulter</label>
+      </div>
+      <div class="ui checkbox">
+        <input type="checkbox" name="policy_contrat_et_m" ng-model="profile.policy.contrat_et_m">
+        <label>Modifer</label>
+      </div>
+      | Etudes
+    </div>
+
+    <div class="item">
+      <i class="la la-credit-card s1 en"></i>
+      <div class="ui checkbox">
+        List des contacts
+      </div>
+    </div>
+
+    <div class="item">
+      <i class="la la-ellipsis-v s1 en"></i>
+      <div class="ui checkbox">
+        <input type="checkbox" name="policy_contact_c" ng-model="profile.policy.contact_c">
+        <label>Consulter</label>
+      </div>
+      <div class="ui checkbox">
+        <input type="checkbox" name="policy_contact_m" ng-model="profile.policy.contact_m">
+        <label>Modifer</label>
+      </div>
+      | Gestion des contacts
+    </div>
+
+    <div class="item">
+      <i class="la la-stack-overflow s1 en"></i>
+      List des group
+    </div>
+
+    <div class="item">
+      <i class="la la-ellipsis-v s1 en"></i>
+      <div class="ui checkbox">
+        <input type="checkbox" name="policy_directeur" ng-model="profile.policy.directeur">
+        <label>Directeur</label>
+      </div>
+    </div>
+
+
     <div class="item">
       <i class="la la-flask s1 en"></i>
       <div class="ui checkbox">
@@ -51,7 +168,10 @@ function echo_html($element){
         <label>Beta function</label>
       </div>
     </div>
-  </div>';
+
+
+  </div>
+ACL;
     break;
 
 

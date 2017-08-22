@@ -11,7 +11,7 @@ ini_set("display_errors", 1);
 
 // Prepart connexion à la base de données
 // FireWorks ('host|username|password|bdd');
-$fw = new FireWorks('127.0.0.1|root|root|open-assurance');
+$fw = new FireWorks('127.0.0.1|root|root|tinyCMS');
 
 //$fw->telegram_api = "156659332:AAFCyXi94dL02gXaHlzRGw7Mk9WZsfMMN1A";
 //$fw->telegram_id  = "127969204";
@@ -43,12 +43,13 @@ class FireWorks{
         $statement->execute($args);
 
         if ($result){
-            $result = new \stdClass;
-            $result->id       = $this->connection->lastInsertId();
-            $result->fetchAll = $statement->fetchAll(PDO::FETCH_OBJ);
-            $result->error    = $statement->errorInfo();
+            $result = array();
+            $lastInsertId       = $this->connection->lastInsertId();
+            $result = $statement->fetchAll(PDO::FETCH_OBJ);
+            $result["id"]       = $lastInsertId;
+            $result["error"]    = $statement->errorInfo();
             if ($debug){
-                $result->sql  = $sql;
+                $result["sql"]  = $sql;
             }
             return $result;
         }else
@@ -57,7 +58,7 @@ class FireWorks{
 
 
     // SQL Generate INSERT or UPDATE ===================================
-    public function sql_gen($table, $fields = array(), $id=null)
+    public function sql_gen($table, $fields = array(), $id="")
     {
         if ( strtoupper($id) =="SELECT"){ // SELECT x,x,x,x,
             $keys = "";

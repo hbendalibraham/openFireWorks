@@ -1,22 +1,19 @@
-<div style="height: 76px"></div>
-
-
-<a href="#!/profile/0" class="ui primary button">Nouveau utilisateur</a>
+<a href="#!/profile/0" class="ui button">Nouveau utilisateur</a>
 <div class="ui icon input focus">
   <i class="search icon"></i>
   <input type="text" placeholder="Search..." ng-model="q">
 </div>
-
-<table class="ui selectable single line blue table">
+<h1>List des utilisateur</h1>
+<table class="ui selectable single line red table">
   <thead>
-    <th>username</th>
+    <th>Utilisateur</th>
     <th>Mobile</th>
     <th>Tel</th>
-    <th>policy</th>
-    <th>date</th>
+    <th>Policy</th>
+    <th>Last update</th>
   </thead>
   <tbody>
-    <tr ng-repeat="ele in $parent.user_list | filter:q">
+    <tr ng-repeat="ele in users_list | filter:q">
       <td>
         <a href="#!/profile/@{{ele.username}}">
           <div class="ui horizontal list">
@@ -37,14 +34,17 @@
         <i class="la la-shield      s1" ng-class="ele.policy.level==1  ?'en':'di'" title="Administrateur"></i>
         <i class="la la-user        s1" ng-class="ele.policy.level==2  ?'en':'di'" title="Utilisateur"></i>
         <i class="la la-user-plus   s1" ng-class="ele.policy.level==3  ?'en':'di'" title="Utilisateur avancer"></i>
-
+        <i class="la la-certificate s1" ng-class="ele.policy.manual_qse?'en':'di'" title="Manual QSE"></i>
+        <i class="la la-folder-open s1" ng-class="ele.policy.contrats  ?'en':'di'" title="Gestion des contrats"></i>
         <i class="la la-comments    s1" ng-class="ele.policy.commant   ?'en':'di'" title="Commontaire"></i>
         <i class="la la-envelope    s1" ng-class="ele.policy.mail      ?'en':'di'" title="Use internal mail"></i>
         <i class="la la-flask       s1" ng-class="ele.policy.beta      ?'en':'di'" title="Beta tester"></i>
-        <i class="la la-unlock      s1" ng-class="ele.policy.lock      ?'en':'di'" title="Disabled compte"></i>
+        
+        <i class="la la-credit-card s1" ng-class="ele.policy.contact_c||ele.policy.contact_m ?'en':'di'" title="list des contacts"></i-->
+        <!--lass="la la-unlock      s1" ng-class="ele.policy.lock      ?'en':'di'" title="Disabled compte"></i-->
 
       </td>
-      <td>{{ele.date_login | date:"HH:mm dd/MM/yyyy"}}</td>
+      <td>{{ele.last_update | date:"HH:mm dd/MM/yyyy"}}</td>
     </tr>
   </tbody>
 </table>

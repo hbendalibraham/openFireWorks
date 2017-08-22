@@ -21,8 +21,6 @@ if (isset($_GET["signout"])){
 //  SIGNIN
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 if ( isset($_POST["username"]) && isset($_POST["password"]) ){
-  //$_POST["username"] = "hbendali";
-  //$_POST["password"] = "genesis";
   if (!$fw->signin( $_POST["username"], $_POST["password"] ) )
     $err="Acces Refuser";
 
@@ -44,7 +42,7 @@ if (!isset($_SESSION["user"])){
 <html lang="fr" dir="ltr">
 <head>
   <meta charset="UTF-8">
-  <title>#openFireWorks</title>
+  <title>#tinyCMS</title>
   <link rel="icon"       href="img/icon.ico"/>
 
   <!-- JQuery -->
@@ -69,11 +67,13 @@ if (!isset($_SESSION["user"])){
 <body ng-app="myApp">
 
 
-  <div class="ui top fixed secondary menu"
+  <div class="ui top fixed menu"
     style=" border-bottom: 3px solid #F00;
             Background-image: url(img/banner.png);
             background-repeat: no-repeat;
             background-position: left;
+            background-color: #fff;
+
     "><!--background-color: #152b44-->
 
     <div style="width: 200px;">
@@ -82,8 +82,31 @@ if (!isset($_SESSION["user"])){
 
     <a class="item" href="#!/"><i class="la s1 la-home"></i>Accueil</a>
 
+    <?php
 
-    <div class="ui dropdown item top_menu">
+      if ($fw->policy('manual_qse')){
+        echo <<< QSE
+        <div class="ui dropdown item top_menu">
+          <i class="s1 la la-certificate"></i> Systeme documentaire QSE
+            <div class="menu">
+            <a class="item" href="#!/qse"> <i class="s1 la la-book"></i> Manual QSE</a>
+            <a class="item" href="#!/formulaire_QSE"> <i class="s1 la la-edit"></i> Envoy des formulaire</a>
+            <a class="item" href="#!/certification"> <i class="s1 la la-certificate"></i> Certification ISO</a>
+          </div>
+        </div>
+QSE;
+
+      }
+
+      if ($fw->policy('contrats'))
+        echo '<a class="item" href="#!/contrats_list"><i class="la s1 la-folder-open"></i>Contrats</a>';
+
+      if ($fw->policy('contact_c') || $fw->policy('contact_m'))
+        echo '<a class="item" href="#!/contacts_list"><i class="la s1 la-credit-card"></i>Contacts</a>';
+    ?>
+
+
+    <!--div class="ui dropdown item top_menu">
       <i class="la s1 la-fax"></i> Contacts
         <div class="menu">
           <a class="item" href="#!/contact/0"> <i class="la s1 la-plus"></i> Nouveau Contacts</a>
@@ -119,14 +142,13 @@ if (!isset($_SESSION["user"])){
             <a class="item" href="#"> <i class="la s1 la-edit"></i> Facture</a>
           </div>
         </div>
-    </div>
+    </div-->
 
     <div class="ui dropdown item top_menu">
-      <i class="la s1 la-cubes" ></i> Admin
+      <i class="la s1 la-cubes" ></i> Utilités
         <div class="menu">
-          <a class="item" href="#!/profile/0"> <i class="la s1 la-plus"></i> Nouveau utilisateur</a>
+          <!--a class="item" href="#!/profile/0"> <i class="la s1 la-plus"></i> Nouveau utilisateur</a-->
           <a class="item" href="#!/user_list"> <i class="la s1 la-users"></i> List des utilisateur</a>
-          <a class="item" href="#!/settings"> <i class="la s1 la-sliders"></i> Settings</a>
         </div>
     </div>
 
@@ -138,16 +160,19 @@ if (!isset($_SESSION["user"])){
 
         <div class="menu">
           <a class="item" href="#!/profile/@<?=$_SESSION["user"]->username?>"> <i class="la s1 la-heart-o"></i> Profile </a>
+          <a class="item" href="#!/settings"> <i class="la s1 la-sliders"></i> Paramètres</a>
           <a class="item" href="#"> <i class="la s1 la-bullhorn"></i> Raport issue </a>
-          <a class="item" href="#"> <i class="la s1 la-question-circle"></i> Get help </a>
+          <a class="item" href="#!/help"> <i class="la s1 la-question-circle"></i> Get help </a>
+
+
           <div class="divider"></div>
           <a class="item" href="./index.php?signout"> <i class="la s1 la-sign-out"></i> Signout </a>
         </div>
       </div>
     </div>
   </div>
-
-  <div class="ui container" ng-view></div>
+  
+  <div style="border:0; margin-top: 60px; padding: 20px" ng-view></div>
 
   <!--  myAppJS  -->
   <script src="js/app.js"></script>

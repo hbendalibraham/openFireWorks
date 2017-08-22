@@ -1,0 +1,111 @@
+<div class="ui">
+
+  <div class="wall"  class="Core ScrollBar" whenscrolled="more()" >
+
+    <div class="header">
+
+          
+      <div class="ui button dropdown item">
+        <i class="plus icon"></i>
+        Nouvell fiche
+        <div class="menu">
+          <a class="item" ng-repeat="x in formType" href="#formN/{{x.code}}/0"><b>{{x.code}}:</b> {{x.name}}</a>
+        </div>
+      </div>
+
+
+      <div class="ui action input">
+        <input type="text" ng-model="q" placeholder="Search...">
+        <button class="ui icon button">
+          <i class="search icon"></i>
+        </button>
+      </div>
+      
+    </div>
+
+    <div class="separation"></div>
+    <div class="tool_bar"></div>
+
+
+
+<h1>List des formulaire</h1>
+
+
+
+  <!--div class="ui compact selection dropdown">
+    <i class="dropdown icon"></i>
+    <div class="text">Nouvell fiche </div>
+    <div class="menu">
+      <div class="item" ng-repeat="x in formType" ng-bind-html="x.code + ' : ' + x.name;"></div>
+
+    </div>
+  </div-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <table class="ui selectable red table">
+        <thead>
+      <tr>
+        <th align="left">&nbsp;</th>
+        <th align="left">N&deg;</th>
+        <th align="left">R&eacute;f</th>
+        <th align="left">Formulaire</th>
+        <th align="left">Emetteur</th>
+        <th align="left">Date de validation</th>
+      </tr>
+      </thead>
+
+          <tbody>
+      <tr ng-repeat="x in formList | filter:q | limitTo:all_list">
+
+        <td></td>
+        <td><a href="#formN/{{x.iD_form}}/{{x.N_form}}">{{x.N_form}}</a></td>
+        <td ng-bind-html="x.iD_form"></td>
+        <td ng-bind-html="x.name"></td>
+        <td ng-bind-html="x.username"></td>
+        <td ng-bind-html="x.Date"></td>
+
+        </tr> 
+          </tbody>
+
+          <tfoot>
+              <tr>
+                <th colspan="6">
+
+                  <div class="ui checkbox">
+                    <input type="checkbox" ng-init="all_list='100'" ng-model="all_list" ng-true-value="" ng-false-value="100">
+                    <label>Afficher tous les article </label>
+                  </div>
+
+                  <!--div class="ui right floated pagination menu">
+                    <a class="icon item">
+                      <i class="left chevron icon"></i>
+                    </a>
+                    <a class="item">1</a>
+                    <a class="item">2</a>
+                    <a class="item">3</a>
+                    <a class="item">4</a>
+                    <a class="icon item">
+                      <i class="right chevron icon"></i>
+                    </a>
+                  </div-->
+                </th>
+              </tr>
+          </tfoot>
+              
+    </table>
+
+
+  </div>
+</div>

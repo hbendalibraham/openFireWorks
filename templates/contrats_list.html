@@ -1,0 +1,520 @@
+<div class="ui inverted menu ">
+  <a class="red item" data-tab="first"  > <i class="la la-truck s1 en"></i> Procurement: Achat locaux</a>
+  <a class="red item" data-tab="second" > <i class="la la-ship s1 en"></i> Procurement: Importation</a>
+  <a class="red item" data-tab="third"  > <i class="la la-building s1 en"></i> Sous-traitance: Batiment</a>
+  <a class="red item" data-tab="forth"  > <i class="la la-street-view s1 en"></i> Sous-traitance: Genie Civil</a>
+  <a class="red item" data-tab="fiveth" > <i class="la la-connectdevelop s1 en"></i> Etudes</a>
+</div>
+
+<div class="ui active tab basic segment center aligned" data-tab="zero">
+    <img src="img/contrats.png">
+</div>
+
+<!--   Procurement: Achat locaux  -->
+<div class="ui tab basic segment" data-tab="first">
+
+    <div class="header">
+        <a class="ui button" ng-show="contrat_pr_al_m" href="#!/contrat_pr/0/Achats Locaux" >
+          <i class="plus icon"></i>
+          Nouveau 
+        </a>
+        
+
+        <div class="ui action input">
+          <input type="text" ng-model="q" placeholder="Search...">
+          <button class="ui icon button">
+            <i class="search icon"></i>
+          </button>
+        </div>
+    </div>
+    <H1>Procurement: Achat locaux</H1>
+    <table class="ui sortable celled selectable red table upper">
+        <thead>
+            <tr>
+                <th colspan="14" class="center aligned">PASSATION</th>
+                <th colspan="4" class="center aligned">EXECUTION</th>
+            </tr>
+            <tr>
+                <th >N&deg;Ord</th>
+                <th>Intitulé du projet</th>
+                <th>Nature de CDC</th>
+                <th>N° CDC</th>
+                <th>D. envoi pour validation</th>
+                <th>D. validation groupe</th>
+                <th>D. lancement</th>
+                <th>D. ouverture</th>
+                <th>D. analyse</th>
+                <th>Fournisseur retenu</th>
+                <th>Montant HT</th>
+                <th>D. attribution provisoire</th>
+                <th>D. envoi pour validation</th>
+                <th>D. validation</th>
+                <th>N° contrat</th>
+                <th>D. contrat</th>
+                <th>Etat contrat</th>
+                <th>D. prévisionnelle de livraison</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr
+                ng-repeat="ele in list_contrats_pr | filter:q  | filter:{ type: 'Achats Locaux' } | orderBy:id:true | limitTo:nele_pr_al  as total0"
+                ng-init=""
+            ><!-- | limitTo:4 -->
+
+                <td><a href="#!/contrat_pr/{{ele.id}}/Achats Locaux"><h3 class="ui center aligned header">{{ele.id}}</h3></a></td>
+                <td>
+                    <a href="#!/contrat_pr/{{ele.id}}/Achats Locaux">
+                        <h4 class="ui image header">
+                            <div class="content">
+                                {{ele.i_cdc}}
+                                <div class="sub header"><b>{{ele.pole}}</b> <br> {{ele.dir}}</div>
+                            </div>
+                        </h4>
+                    </a>
+                </td>
+                <td>{{ele.nature}}</td>
+                <td>{{ele.n_cdc}}</td>
+                <td>{{ele.dt_evg | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.dt_vg | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.dt_l | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.dt_o | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.dt_a | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.frs}}</td>
+                <td class="right aligned">{{ele.mnt | currency : 'DA' : 2}}</td>
+                <td>{{ele.dt_ap | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.dt_en | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.dt_v | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.n_c}}</td>
+                <td>{{ele.dt_c | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.et_c}}</td>
+                <td>{{ele.dt_lv | date:'dd/MM/yyyy'}}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="18">
+                    <div class="ui horizontal tiny statistic aligned floated right">
+                        <div class="ui checkbox">
+                            <input
+                                type           = "checkbox"
+                                ng-model       = "nele_pr_al"
+                                ng-init        = "nele_pr_al='100'"
+                                ng-true-value  = ""
+                                ng-false-value = "100"
+                            >
+                            <label>Afficher tous les contrats </label>
+                        </div>
+                        &nbsp;&nbsp; / &nbsp;&nbsp;
+                        <div class="label">TOTAL &nbsp;&nbsp;&nbsp;&nbsp;</div>
+                        <div class="value">{{total0.length}}</div>
+                        <div class="label">Contrats</div>
+                    </div>
+
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<!--  Procurement: Achat International  -->
+<div class="ui tab basic segment" data-tab="second">
+    <div class="header">
+        <a class="ui button" ng-show="contrat_pr_im_m" href="#!/contrat_pr/0/Importation">
+          <i class="plus icon"></i>
+          Nouveau
+        </a>
+
+        <div class="ui action input">
+          <input type="text" ng-model="q" placeholder="Search...">
+          <button class="ui icon button">
+            <i class="search icon"></i>
+          </button>
+        </div>
+    </div>
+    <h1>Procurement: Achat International</h1>
+    <table class="ui sortable celled selectable red table">
+        <thead>
+            <tr>
+                <th colspan="14" class="center aligned">PASSATION</th>
+                <th colspan="4" class="center aligned">EXECUTION</th>
+            </tr>
+            <tr>
+                <th >N&deg;Ord</th>
+                <th>Intitulé du projet</th>
+                <th>Nature de CDC</th>
+                <th>N° CDC</th>
+                <th>D. envoi pour validation</th>
+                <th>D. validation groupe</th>
+                <th>D. lancement</th>
+                <th>D. ouverture</th>
+                <th>D. analyse</th>
+                <th>Fournisseur retenu</th>
+                <th>Montant HT</th>
+                <th>D. attribution provisoire</th>
+                <th>D. envoi pour validation</th>
+                <th>D. validation</th>
+                <th>N° contrat</th>
+                <th>D. contrat</th>
+                <th>Etat contrat</th>
+                <th>D. prévisionnelle de livraison</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr
+                ng-repeat="ele in list_contrats_pr | filter:q  | filter:{ type: 'Importation' } | orderBy:id:true | limitTo:nele_pr_al  as total1"
+            >
+
+                <td><a href="#!/contrat_pr/{{ele.id}}/Importation"><h3 class="ui center aligned header">{{ele.id}}</h3></a></td>
+                <td>
+                    <a href="#!/contrat_pr/{{ele.id}}/Importation">
+                        <h4 class="ui image header">
+                            <div class="content">
+                                {{ele.i_cdc}}
+                                <div class="sub header"><b>{{ele.pole}}</b> <br> {{ele.dir}}</div>
+                            </div>
+                        </h4>
+                    </a>
+                </td>
+                <td>{{ele.nature}}</td>
+                <td>{{ele.n_cdc}}</td>
+                <td>{{ele.dt_evg | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.dt_vg | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.dt_l | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.dt_o | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.dt_a | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.frs}}</td>
+                <td class="right aligned">{{ele.mnt | currency : 'DA' : 2}}</td>
+                <td>{{ele.dt_ap | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.dt_en | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.dt_v | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.n_c}}</td>
+                <td>{{ele.dt_c | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.et_c}}</td>
+                <td>{{ele.dt_lv | date:'dd/MM/yyyy'}}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="18">
+                    <div class="ui horizontal tiny statistic aligned floated right">
+                        <div class="ui checkbox">
+                            <input
+                                type           = "checkbox"
+                                ng-model       = "nele_pr_al"
+                                ng-init        = "nele_pr_al='100'"
+                                ng-true-value  = ""
+                                ng-false-value = "100"
+                            >
+                            <label>Afficher tous les contrats </label>
+                        </div>
+                        &nbsp;&nbsp; / &nbsp;&nbsp;
+                        <div class="label">TOTAL &nbsp;&nbsp;&nbsp;&nbsp;</div>
+                        <div class="value">{{total1.length}}</div>
+                        <div class="label">Contrats</div>
+                    </div>
+
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<!--  contrat des sous-traitance BATIMENT  -->
+<div class="ui tab basic segment" data-tab="third">
+    <div class="header">
+        <a class="ui button" ng-show="contrat_st_bt_m" href="#!/contrat_st/0/Batiment">
+          <i class="plus icon"></i>
+          Nouveau
+        </a>
+
+        <div class="ui action input">
+          <input type="text" ng-model="q" placeholder="Search...">
+          <button class="ui icon button">
+            <i class="search icon"></i>
+          </button>
+        </div>
+    </div>
+    <h1>Contrats des sous-traitance BATIMENT</h1>
+    <table class="ui sortable celled selectable red table">
+        <thead>
+            <tr>
+                <th colspan="10" class="center aligned">PASSATION</th>
+                <th colspan="6" class="center aligned">EXECUTION</th>
+            </tr>
+            <tr>
+                <th>N&deg;Ord</th>
+                <th>Intitulé du projet</th>
+                <th>Nature de l'opération</th>
+                <th>Objet de l'opération</th>
+                <th>Mode de passation</th>
+                <th>Lancement de de l'appel d'offres/consultation</th>
+                <th>Ouverture des plis</th>
+                <th>Evaluation des offres</th>
+                <th>Délai de réalisation</th>
+                <th>Montant contractuel EN TTC</th>
+                <th>N° contrat</th>
+                <th>Co-contractant</th>
+                <th>Adresse</th>
+                <th>N° Art. d'imposition</th>
+                <th>D. Enregistrement</th>
+            </tr>
+        </thead>
+        <tbody>           
+            <tr
+                ng-repeat="ele in list_contrats_st | filter:q  | filter:{ type: 'Batiment' } | orderBy:id:true | limitTo:nele_pr_al  as total3"
+            >   
+
+                <td><a href="#!/contrat_st/{{ele.id}}/Batiment"><h3 class="ui center aligned header">{{ele.id}}</h3></a></td>
+                <td class="upper">
+                    <a href="#!/contrat_st/{{ele.id}}/Batiment">
+                        <h4 class="ui image header">
+                            <div class="content">
+                                {{ele.i_cdc}}
+                                <div class="sub header"><b>{{ele.pole}}</b> <br> {{ele.dir}}</div>
+                            </div>
+                        </h4>
+                    </a>
+                </td>
+                <td>{{ele.nat_op}}</td>
+                <td>{{ele.obj_op}}</td>
+                <td>{{ele.md_pass}}</td>
+                <td>{{ele.dt_af | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.dt_ovp | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.dt_eof | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.dt_rl | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.mnt | currency : 'DA' : 2}}</td>
+                <td>{{ele.n_c}}</td>
+                <td>{{ele.cocont}}</td>
+                <td>{{ele.adr}}</td>
+                <td>{{ele.n_nif}}</td>
+                <td>{{ele.n_art}}</td>
+                <td>{{ele.dt_enr | date:'dd/MM/yyyy'}}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="16">
+                    <div class="ui horizontal tiny statistic aligned floated right">
+                        <div class="ui checkbox">
+                          <input type="checkbox" ng-init="all_list='100'" ng-model="all_list" ng-true-value="" ng-false-value="100">
+                          <label>Afficher tous les contrats </label>
+                        </div>
+                        &nbsp;&nbsp; / &nbsp;&nbsp;
+                        <div class="label">
+                            TOTAL &nbsp;&nbsp;&nbsp;&nbsp;
+                        </div>
+                        <div class="value">
+                            {{total3.length}}
+                        </div>
+                        <div class="label">
+                            Contrats
+                        </div>
+                    </div>
+
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<!--  contrat des sous-traitance GENIE CIVILE  -->
+<div class="ui tab basic segment" data-tab="forth">
+    <div class="header">
+        <a class="ui button" ng-show="contrat_st_gc_m" href="#!/contrat_st/0/Genie Civile">
+          <i class="plus icon"></i>
+          Nouveau
+        </a>
+
+        <div class="ui action input">
+          <input type="text" ng-model="q" placeholder="Search...">
+          <button class="ui icon button">
+            <i class="search icon"></i>
+          </button>
+        </div>
+    </div>
+    <h1>Contrat des sous-traitance GENIE CIVILE</h1>
+    <table class="ui sortable celled selectable red table">
+        <thead>
+            <tr>
+                <th colspan="10" class="center aligned">PASSATION</th>
+                <th colspan="6" class="center aligned">EXECUTION</th>
+            </tr>
+            <tr>
+                <th>N&deg;Ord</th>
+                <th>Intitulé du projet</th>
+                <th>Nature de l'opération</th>
+                <th>Objet de l'opération</th>
+                <th>Mode de passation</th>
+                <th>Lancement de de l'appel d'offres/consultation</th>
+                <th>Ouverture des plis</th>
+                <th>Evaluation des offres</th>
+                <th>Délai de réalisation</th>
+                <th>Montant contractuel EN TTC</th>
+                <th>N° contrat</th>
+                <th>Co-contractant</th>
+                <th>Adresse</th>
+                <th>N° Art. d'imposition</th>
+                <th>D. Enregistrement</th>
+            </tr>
+        </thead>
+        <tbody>           
+            <tr
+                ng-repeat="ele in list_contrats_st | filter:q  | filter:{ type: 'Genie Civile' } | orderBy:id:true | limitTo:nele_pr_al  as total4"
+            >   
+
+                <td><a href="#!/contrat_st/{{ele.id}}/Genie Civile"><h3 class="ui center aligned header">{{ele.id}}</h3></a></td>
+                <td class="upper">
+                    <a href="#!/contrat_st/{{ele.id}}/Genie Civile">
+                        <h4 class="ui image header">
+                            <div class="content">
+                                {{ele.i_cdc}}
+                                <div class="sub header"><b>{{ele.pole}}</b> <br> {{ele.dir}}</div>
+                            </div>
+                        </h4>
+                    </a>
+                </td>
+                <td>{{ele.nat_op}}</td>
+                <td>{{ele.obj_op}}</td>
+                <td>{{ele.md_pass}}</td>
+                <td>{{ele.dt_af | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.dt_ovp | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.dt_eof | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.dt_rl | date:'dd/MM/yyyy'}}</td>
+                <td>{{ele.mnt | currency : 'DA' : 2}}</td>
+                <td>{{ele.n_c}}</td>
+                <td>{{ele.cocont}}</td>
+                <td>{{ele.adr}}</td>
+                <td>{{ele.n_nif}}</td>
+                <td>{{ele.n_art}}</td>
+                <td>{{ele.dt_enr | date:'dd/MM/yyyy'}}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="16">
+                    <div class="ui horizontal tiny statistic aligned floated right">
+                        <div class="ui checkbox">
+                          <input type="checkbox" ng-init="all_list='100'" ng-model="all_list" ng-true-value="" ng-false-value="100">
+                          <label>Afficher tous les contrats </label>
+                        </div>
+                        &nbsp;&nbsp; / &nbsp;&nbsp;
+                        <div class="label">
+                            TOTAL &nbsp;&nbsp;&nbsp;&nbsp;
+                        </div>
+                        <div class="value">
+                            {{total4.length}}
+                        </div>
+                        <div class="label">
+                            Contrats
+                        </div>
+                    </div>
+
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<!--  Etude   -->
+<div class="ui tab basic segment" data-tab="fiveth">
+    <div class="header">
+        <a class="ui button" ng-show="contrat_et_m" href="#!/contrat_et/0">
+          <i class="plus icon"></i>
+          Nouveau
+        </a>
+
+        <div class="ui action input">
+          <input type="text" ng-model="q" placeholder="Search...">
+          <button class="ui icon button">
+            <i class="search icon"></i>
+          </button>
+        </div>
+    </div>
+    <h1>Etudes</h1>
+    <table class="ui sortable celled selectable red table">
+        <thead>
+            <tr>
+                <th colspan="7" class="center aligned">PASSATION</th>
+                <th colspan="6" class="center aligned">EXECUTION</th>
+                <th colspan="4" class="center aligned">FINANCES</th>
+            </tr>
+            <tr>
+                <th>N°Ord</th>
+                <th>Intitulé du projet</th>
+                <th>Nature de l'opération</th>
+                <th>Objet de l'opération</th>
+                <th>Mode de passation</th>
+                <th>Delai execution des etudes</th>
+                <th>Montant contractuel HT</th>
+                <th>N° contrat</th>
+                <th>Cocontractant</th>
+                <th>ODS début de travaux</th>
+                <th>Prorogation des délais</th>
+                <th>Réception provisoire</th>
+                <th>Réception définitive</th>
+                <th>Montant des avenants</th>
+                <th>Total des paiements</th>
+                <th>Contentieux</th>
+                <th>Observation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr
+                ng-repeat="ele in list_contrats_et | filter:q | orderBy:id:true | limitTo:nele_pr_al  as total5"
+            >   
+
+                <td><a href="#!/contrat_et/{{ele.id}}"><h3 class="ui center aligned header">{{ele.id}}</h3></a></td>
+                <td>
+                    <a href="#!/contrat_et/{{ele.id}}">
+                        <h4 class="ui image header">
+                            <div class="content">
+                                {{ele.i_cdc}}
+                                <div class="sub header"><b>{{ele.pole}}</b> <br> {{ele.dir}}</div>
+                            </div>
+                        </h4>
+                    </a>
+                </td>
+                <td>{{ele.nat_op}}</td>
+                <td>{{ele.obj_op}}</td>
+                <td>{{ele.md_pass}}</td>
+                <td>{{ele.dt_exet}}</td>
+                <td>{{ele.mnt_con}}</td>
+                <td>{{ele.n_c}}</td>
+                <td>{{ele.cocont}}</td>
+                <td>{{ele.dt_ods}}</td>
+                <td>{{ele.dt_pdd}}</td>
+                <td>{{ele.dt_rp}}</td>
+                <td>{{ele.dt_rd}}</td>
+                <td>{{ele.mnt_av}}</td>
+                <td>{{ele.mnt_paie}}</td>
+                <td>{{ele.cont}}</td>
+                <td>{{ele.obs}}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="21">
+                    <div class="ui horizontal tiny statistic aligned floated right">
+                        <div class="ui checkbox">
+                          <input type="checkbox" ng-init="all_list='100'" ng-model="all_list" ng-true-value="" ng-false-value="100">
+                          <label>Afficher tous les contrats </label>
+                        </div>
+                        &nbsp;&nbsp; / &nbsp;&nbsp;
+                        <div class="label">
+                            TOTAL &nbsp;&nbsp;&nbsp;&nbsp;
+                        </div>
+                        <div class="value">
+                            {{total5.length}}
+                        </div>
+                        <div class="label">
+                            Contrats
+                        </div>
+                    </div>
+
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
