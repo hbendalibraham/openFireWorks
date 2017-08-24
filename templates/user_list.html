@@ -13,12 +13,15 @@
     <th>Last update</th>
   </thead>
   <tbody>
-    <tr ng-repeat="ele in users_list | filter:q">
+    <tr ng-repeat="ele in $parent.userList | filter:q">
       <td>
+        <div class="bullet" ng-class="( ele.last_update | dateDiff: $parent.date ) > -600000 ? 'active':'notactive'"></div>
         <a href="#!/profile/@{{ele.username}}">
           <div class="ui horizontal list">
             <div class="item">
               <img class="ui mini circular image" src="https://s.gravatar.com/avatar/{{ele.gravatar}}?s=36&d=mm">
+
+
               <div class="content">
                 <div class="ui sub header">{{ele.firstname}} {{ele.lastname}}</div>
                 <sub>@{{ele.username}}</sub> - {{ele.department}}

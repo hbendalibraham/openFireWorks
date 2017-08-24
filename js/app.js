@@ -113,22 +113,36 @@ var myApp = angular
   };
 })
 
+.filter('dateDiff', function () {
+  var magicNumber = 1; //(1000 * 60 * 60 * 24);
+
+  return function (toDate0, fromDate0) {
+    toDate = new Date(toDate0); 
+    fromDate = new Date(fromDate0); 
+    if(toDate && fromDate){
+      var dayDiff = Math.floor((toDate - fromDate) / magicNumber);
+      if (angular.isNumber(dayDiff)){
+        //console.log('dayDiff: ' + dayDiff);
+        return dayDiff + 1;
+      }
+    }
+  };
+})
+
+
 // ==================================================================================================
 .controller('IndexController', function ($scope, $http) {
-  if (!$scope.$parent.user)
-    $http.get('./api/?user')
-      .then(function(res){
-        $scope.$parent.user = res.data;
-        console.log($scope.$parent.user);
-        //if ()
-        //var policy = jQuery.parseJSON($scope.$parent.user.policy);
-        var policy = jQuery.parseJSON('{}');
-        $scope.$parent.user.policy = policy;
+  $scope.$parent.date = new Date();
+  console.log('- Keep live');
 
-        console.log("-> Load user");
-        console.log($scope.$parent.user);
+  if (!$scope.$parent.userList)
+    $http.get('api/?user=a')
+      .then(function(res){
+        $scope.$parent.userList = res.data;
+        console.log('- Load user list ' + $scope.$parent.userList.length );
       })
     ;
+
 })
 
 // ==================================================================================================
@@ -143,12 +157,11 @@ var myApp = angular
 
 // ==================================================================================================
 .controller('UserListController', function ($scope,$http) {
-  if (!$scope.users_list)
+  if (!$scope.$parent.userList)
     $http.get('api/?user=a')
       .then(function(res){
-        $scope.users_list = res.data;
-        console.log("-> UsersList");
-        console.log($scope.users_list);
+        $scope.$parent.userList = res.data;
+        console.log('- Load user list ' + $scope.$parent.userList.length );
       })
     ;
 })
@@ -294,7 +307,7 @@ var myApp = angular
   $('.menu .item').tab();
 
   //$scope.$parent.spinner = true;
-  console.log("Contrats list");
+  console.log("> Contrats list");
 
   $http.get('api/?acl=contrat_pr_al_c')
     .then(function(r){
@@ -345,7 +358,7 @@ var myApp = angular
 
   if (!$scope.list_contrats_pr)
   {
-    console.log(" - Load PR");
+    console.log("- Load PR");
     $http.get('api/?contrat=pr')
       .then(function(res){
         $scope.list_contrats_pr = res.data;
@@ -356,7 +369,7 @@ var myApp = angular
 
   if (!$scope.list_contrats_st)
   {
-    console.log(" - Load ST");
+    console.log("- Load ST");
     $http.get('api/?contrat=st')
       .then(function(res){
         $scope.list_contrats_st = res.data;
@@ -367,7 +380,7 @@ var myApp = angular
 
   if (!$scope.list_contrats_et)
   {
-    console.log(" - Load ET");
+    console.log("- Load ET");
     $http.get('api/?contrat=et')
       .then(function(res){
         $scope.list_contrats_et = res.data;
@@ -390,7 +403,7 @@ var myApp = angular
 // ***************************************************************************************
 .controller('ContratPrController', function ($scope, $http, $location, $routeParams, $filter) {
 
-  console.log("Contrats Procurement N°"+$routeParams.id);
+  console.log("> Contrats Procurement N°"+$routeParams.id);
   $scope.sc = {
     'id'   : $routeParams.id,
     'type' : $routeParams.tp
@@ -399,10 +412,9 @@ var myApp = angular
 
   $http.get($routeParams.tp=='Achats Locaux'?'api/?acl=contrat_pr_im_m':'api/?acl=contrat_pr_im_m' )
     .then(function(r){
-      console.log(' /?acl rule '+ r.data);
+      console.log( r.data!==true ? "- form read only !" : "- form read write !");
       if (r.data!==true)
       {
-        console.log("profile readonly !");
         $("input").attr("readonly","readonly");
         $('select').attr('disabled',true);
         $('button').hide();
@@ -423,23 +435,16 @@ var myApp = angular
         ;
     });
 
-  if (!$scope.$parent.userList)
-    $http.get('api/?user=a')
-      .then(function(r){
-        console.log(' - Load user list');
-        $scope.$parent.userList = r.data;
-    });
-
   if (!$scope.$parent.fournisseur)
     $http.get('api/?contact=fournisseur')
       .then(function(r){
-        console.log(" > load fournisseur");
+        console.log("- load fournisseur");
         $scope.$parent.fournisseur = r.data;
     });
 
   if ($routeParams.id != 0)
   {
-    console.log(" > load contrat N°" + $routeParams.id);
+    console.log("- load contrat N°" + $routeParams.id);
     $http.get('api/?contrat=pr&n=' + $routeParams.id)
     .then(function (r) {
       $scope.sc = r.data[0];
@@ -453,8 +458,6 @@ var myApp = angular
       $scope.sc.date_o   = $scope.sc.date_o   == null ? null : new Date($scope.sc.date_o);
       $scope.sc.date_v   = $scope.sc.date_v   == null ? null : new Date($scope.sc.date_v);
       $scope.sc.date_vg  = $scope.sc.date_vg  == null ? null : new Date($scope.sc.date_vg);
-      console.log($scope.sc);
-
       $scope.show_valide_btn = false;
     });
   }
@@ -470,14 +473,14 @@ var myApp = angular
 
       $http.post('api/?contrat=update&tc=pr', $scope.sc, {headers: { 'Content-Type': 'application/json; charset=utf-8' }})
       .then(function (r) {
-        console.log(" > done!");
+        console.log("# done!");
         $scope.msg=r.msg;
         $scope.save = 2;
         $location.path('contrats_list');
         
       },      
       function(r){
-        console.log(" > Err");
+        console.log("# Err");
         console.log(r);
         $scope.msg=r.err;
         $scope.save = -1;
@@ -495,10 +498,9 @@ var myApp = angular
 
 // ***************************************************************************************
 // * Contrat Sous-Traitance
-// *
 // ***************************************************************************************
 .controller('ContratStController', function ($scope, $http, $location, $routeParams) {
-  console.log("Contrats Sous-Traitance N°"+$routeParams.id);
+  console.log("> Contrats Sous-Traitance N°"+$routeParams.id);
   $scope.save  = false;
   $scope.sc = {
     'id'   : $routeParams.id,
@@ -509,9 +511,8 @@ var myApp = angular
 
   $http.get($routeParams.tp=='Batiment'?'api/?acl=contrat_st_bt_m':'api/?acl=contrat_st_gc_m' )
     .then(function(r){
-      console.log(' ? acl rule ' + r.data);
+      console.log( r.data!==true ? "- form read only !" : "- form read write !");
       if (r.data!==true){
-        console.log("profile readonly !");
         $("input").attr("readonly","readonly");
         $('select').attr('disabled',true);
         $('button').hide();
@@ -531,14 +532,6 @@ var myApp = angular
       ;
     })
   ;
-
-  if (!$scope.$parent.userList)
-    $http.get('api/?user=a')
-      .then(function(r){
-        console.log(' - Load user list');
-        $scope.$parent.userList = r.data;
-    });
-
   
   if ($routeParams.id != 0)
   {
@@ -551,8 +544,7 @@ var myApp = angular
         $scope.sc.date_rl   = $scope.sc.date_rl  == null ? null : new Date($scope.sc.date_rl);
         $scope.sc.date_enr  = $scope.sc.date_enr == null ? null : new Date($scope.sc.date_enr);
         $scope.show_valide_btn = false;
-        console.log(" > load contrat N°" + $routeParams.id);
-        console.log($scope.sc);
+        console.log("- load contrat N°" + $routeParams.id);
       })
     ;
   }
@@ -572,12 +564,12 @@ var myApp = angular
       })
       .success(function(data) {
         $scope.msg=data.api;
-        console.log(" > "+$scope.msg[0]);
+        console.log("# "+$scope.msg[0]);
         $scope.save = 2;
       })
       .error(function(data) {
         $scope.msg=data.api;
-        console.log(" > "+$scope.msg[0]);
+        console.log("# "+$scope.msg[0]);
         $scope.save = -1;
       })
       ;
@@ -589,112 +581,96 @@ var myApp = angular
   }
 
   $scope.$parent.spinner = false;
-  
+
 })
 
-        // ***************************************************************************************
-        // * Contrat Etudes
-        // *
-        // ***************************************************************************************
-        .controller('ContratEtController', function ($scope, $http, $location, $routeParams) {
-          console.log("Contrats Etude N°"+$routeParams.id);
-          $scope.save  = false;
-          $scope.sc = {
-            'id' : $routeParams.id
-          };
+// ***************************************************************************************
+// * Contrat Etudes
+// ***************************************************************************************
+.controller('ContratEtController', function ($scope, $http, $location, $routeParams) {
+  console.log("> Contrats Etude N°"+$routeParams.id);
+  $scope.save  = false;
+  $scope.sc = {
+    'id' : $routeParams.id
+  };
 
-          $http.get('api/?acl=contrat_et_m' )
-            .then(function(res){
-              if (res.data.api!==true){
-                console.log("profile readonly !");
-                $("input").attr("readonly","readonly");
-                $('select').attr('disabled',true);
-                $('button').hide();
-              }
-            });
+  $http.get('api/?acl=contrat_et_m' )
+    .then(function(r){
+      console.log( r.data!==true ? "- form read only !" : "- form read write !");
+      if (r.data!==true){
+        console.log("profile readonly !");
+        $("input").attr("readonly","readonly");
+        $('select').attr('disabled',true);
+        $('button').hide();
+      }
+    });
 
-          $('.dropdown')
-            .dropdown()
-          ;
-          $('.message .close')
-            .on('click', function() {
-              $(this)
-                .closest('.message')
-                .transition('fade')
-              ;
-            })
-          ;
+  $('.dropdown')
+    .dropdown()
+  ;
+  $('.message .close')
+    .on('click', function() {
+      $(this)
+        .closest('.message')
+        .transition('fade')
+      ;
+    })
+  ;
 
-          if (!$scope.$parent.userList)
-            $http.get('api/?user=a')
-              .then(function(res){
-                console.log(' -> Load user list');
-                console.log(res);
-                $scope.$parent.userList = res.data.api;
-                //console.log($scope.$parent.userList);
-              })
-            ;
+  if ($routeParams.id != 0)
+  {
+    $http.get('api/?contrat=et&n=' + $routeParams.id)
+      .then(function (res) {
+        $scope.sc = res.data[0];
+        $scope.sc.date_exet = $scope.sc.date_exet == null ? null : new Date($scope.sc.date_exet);
+        $scope.sc.date_ods  = $scope.sc.date_ods  == null ? null : new Date($scope.sc.date_ods);
+        $scope.sc.date_pdd  = $scope.sc.date_pdd  == null ? null : new Date($scope.sc.date_pdd);
+        $scope.sc.date_rp   = $scope.sc.date_rp   == null ? null : new Date($scope.sc.date_rp);
+        $scope.sc.date_rd   = $scope.sc.date_rd   == null ? null : new Date($scope.sc.date_rd);
+        $scope.show_valide_btn = false;
+        console.log("- load contrat N°" + $routeParams.id);
+      });
+  }
 
-          if ($routeParams.id != 0)
-          {
-            $http.get('api/?contrat=et&n=' + $routeParams.id)
-              .then(function (res) {
-                console.log(" -> load contrat N°" + $routeParams.id);
-                console.log(res);
-                $scope.sc = res.data.api.fetchAll[0];
-                $scope.sc.date_exet = $scope.sc.date_exet == null ? null : new Date($scope.sc.date_exet);
-                $scope.sc.date_ods  = $scope.sc.date_ods  == null ? null : new Date($scope.sc.date_ods);
-                $scope.sc.date_pdd  = $scope.sc.date_pdd  == null ? null : new Date($scope.sc.date_pdd);
-                $scope.sc.date_rp   = $scope.sc.date_rp   == null ? null : new Date($scope.sc.date_rp);
-                $scope.sc.date_rd   = $scope.sc.date_rd   == null ? null : new Date($scope.sc.date_rd);
+  $scope.submit=function(){
+    if ($scope.sc){
+      $scope.save = 1;
 
-                console.log($scope.sc);
-                $scope.show_valide_btn = false;
-              });
-          }
+      $scope.sc.dir  = document.getElementById("sc_dir").value;
+      $scope.sc.pole = document.getElementById("sc_pole").value;
 
-            $scope.submit=function(){
-                if ($scope.sc){
-                    $scope.save = 1;
+      $http({
+        method  : 'POST',
+        url     : 'api/?contrat=update&tc=et',
+        data    : $.param($scope.sc),  // pass in data as strings
+        headers : {'Content-Type': 'application/x-www-form-urlencoded'}  // set the headers so angular passing info as form data (not request payload)
+      })
+      .success(function(data) {
+        $scope.msg=data.api;
+        console.log("# "+$scope.msg[0]);
+        $scope.save = 2;
+      })
+      .error(function(data) {
+        $scope.msg=data.api;
+        console.log("# "+$scope.msg[0]);
+        $scope.save = -1;
+      })
+      ;
+    }else{
+      $scope.msg='Verifiey les champs "Type de cahiers des charges" et  "Nature de cahiers des charges"';
+      $scope.save = -1;
+    }
+  }
 
-                    $scope.sc.dir  = document.getElementById("sc_dir").value;
-                    $scope.sc.pole = document.getElementById("sc_pole").value;
+  $scope.$parent.spinner = false;
 
-                    $http({
-                        method  : 'POST',
-                        url     : 'api/?contrat=update&tc=et',
-                        data    : $.param($scope.sc),  // pass in data as strings
-                        headers : {'Content-Type': 'application/x-www-form-urlencoded'}  // set the headers so angular passing info as form data (not request payload)
-                    })
-                    .success(function(data) {
-                        $scope.msg=data.api;
-                        console.log(" > "+$scope.msg[0]);
-                        $scope.save = 2;
-                    })
-                    .error(function(data) {
-                        $scope.msg=data.api;
-                        console.log(" > "+$scope.msg[0]);
-                        $scope.save = -1;
-                    })
-                    ;
-                }else{
-                    $scope.msg='Verifiey les champs "Type de cahiers des charges" et  "Nature de cahiers des charges"';
-                    $scope.save = -1;
-                }
-
-            }
-
-
-
-
-            $scope.$parent.spinner = false;
-
-        })
+})
 
 
 
 // ==================================================================================================
 .controller('ProfileController', function ($scope,$http,$routeParams,$location) {
+  console.log("> %cProfile",'color: #0f0');
   $scope.spiner_save = false;
   $scope.spiner_del  = false;
   $scope.profile = {'id':null,'username':null,'password':null,'firstname':null,'lastname':null,'email':null,'department':null,'directeur':null,'mobile':null,'tel':null,'fax':null,'address':null,'signature':null,'policy':null};
@@ -710,10 +686,10 @@ var myApp = angular
 
   if ($routeParams.id != "0"){
     $http.get('api/?user='+$routeParams.id)
-      .then(function(res){
-        $scope.profile = res.data.api[0];
+      .then(function(r){
+        $scope.profile = r.data[0];
         $("#terms").html('');
-        console.log("-> Profile "+$routeParams.id);
+        console.log("- load "+$routeParams.id);
         console.log($scope.profile);
       });
    
@@ -723,33 +699,48 @@ var myApp = angular
     $(".rmv_corner .ui.left.corner.label").remove();
   }
 
-  $scope.save = function(){
-    if ( $('.ui.form').form('is valid') ){
+  $scope.submit = function(){
+    //if ( $('.ui.form').form('is valid') ){
+    if ( $scope.profile ){
       $scope.spiner_save = true;
 
-      console.log("save");
+      console.log("- prepare to save");
       console.log($scope.profile);
 
-      $http.post('api/?user=s', $scope.profile, {headers: { 'Content-Type': 'application/json; charset=utf-8' }})
+      //$scope.profile      
+
+
+      angular.forEach($scope.profile, function(value, key) {
+        if (angular.isUndefined(value)){
+          this.key="";
+          console.log("="+key+":"+value);
+        }
+      });
+
+      console.log($scope.profile);
+
+      $http.post('api/?user=s&debug', $scope.profile, {headers: { 'Content-Type': 'application/json; charset=utf-8' }})
       .then(function (r) {
+        console.log("# ");
         console.log(r);
 
         if (r.data.id != "0")
           $scope.profile.id = r.data.id;
 
-        if (r.data.api.error[1] == null)
-          $scope.msg = "Profile enregistrer";
-        else
-          $scope.msg = r.data.api.error[2];
-        
-        console.log("-> done!");
         $scope.spiner_save = false;
-        delete $scope.$parent.user_list;
-        $location.path('user_list');
+        
+        if (r.data.error[1] == null){
+          $scope.msg = "Profile enregistrer";
+          delete $scope.$parent.userList;
+          $location.path('user_list');
+        }else{
+          $scope.msg = r.data.error[2];
+          console.log("# %cerror: "+ r.data.error[2], 'color:#f00;');
+        }        
       },      
       function(){
         $scope.msg = "Erreur d'enregistrement";
-        console.log("-> field");
+        console.log("# %cfield!", 'color:#f00;');
         $scope.spiner_save = false;
       });
     }
@@ -759,22 +750,24 @@ var myApp = angular
     $scope.spiner_del = true;
     if ($scope.profile.id != "0" && $scope.profile.id != "" && confirm("Etre vous sure de vouloir supprimer ce profile ?")){
       
-      $http.post('./api/?user=d&id='+$scope.profile.id)
+      $http.post('api/?user=d&id='+$scope.profile.id)
       .then(function (r) {
-        console.log(r);
-        if (!r.data.api.error){
-          console.log("-> delete field");
+        //console.log(r);
+        console.log("- delete");
+        
+        if (!r.data.error){
+          console.log("# %cfiled!",'color:#f00');
           $location.path('user_list');          
-        }else if (r.data.api.error[1] != null){
-          console.log("-> delete field");
+        }else if (r.data.error[1] != null){
+          console.log("# %cfiled!",'color:#f00');
         }else{
-          delete $scope.$parent.user_list;
-          console.log("-> delete done!");
-          $location.path('user_list');
+          delete $scope.$parent.userList;
+          console.log("# %cdone!",'color:#0f0');
+          $location.path('userList');
         }
       },      
       function(){
-        console.log("-> delete field");
+        console.log("# %cfiled!",'color:#f00');
       });
       $scope.spiner_del = false;
     }else{
@@ -807,7 +800,7 @@ var myApp = angular
       console.log("save");
       console.log($scope.profile);
 
-      $http.post('./api/?user=s', $scope.profile, {headers: { 'Content-Type': 'application/json; charset=utf-8' }})
+      $http.post('api/?user=s', $scope.profile, {headers: { 'Content-Type': 'application/json; charset=utf-8' }})
       .then(function (r) {
         console.log(r);
 
@@ -836,7 +829,7 @@ var myApp = angular
      $scope.loading = true;
     if ($scope.profile.id != "0" && $scope.profile.id != "" && confirm("Etre vous sure de vouloir supprimer ce profile ?")){
       
-      $http.post('./api/?user=d&id='+$scope.profile.id)
+      $http.post('api/?user=d&id='+$scope.profile.id)
       .then(function (r) {
         console.log(r);
         if (!r.data.err){

@@ -51,7 +51,7 @@
                 <label>Responsable de la structure bénéficiaire <i class="red asterisk icon"></i></label>
                 <select id="sc_dir" ng-model="sc.dir" class="ui upper">
                     <option value="" selected disabled hidden></option>
-                    <option ng-repeat="ele in $parent.userList | filter:{rule:'directeur'}" value="{{ele.username}}">{{ele.username}}</option>
+                    <option ng-repeat="ele in $parent.userList | filter:{policy:{directeur:true}} | orderBy: 'username'" value="{{ele.username}}">{{ele.username | uppercase}}</option>
                 </select>
             </div>
 
@@ -59,7 +59,7 @@
                 <label>Pole <i class="red asterisk icon"></i></label>
                 <select id="sc_pole" ng-model="sc.pole" class="ui upper">
                     <option value="" selected disabled hidden></option>
-                    <option ng-repeat="ele in $parent.userList | filter:{rule:'chantier'}" value="{{ele.username}}">{{ele.username}}</option>
+                    <option ng-repeat="ele in $parent.userList | filter:{policy:{directeur: '!true', chantier: 'true'}} | orderBy: 'username'" value="{{ele.username}}">{{ele.username | uppercase}}</option>
                 </select>
             </div>
 

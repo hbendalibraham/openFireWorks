@@ -33,6 +33,8 @@ class FireWorks{
             self::$databases[$connDetails] = new PDO($dsn, $user, $pass, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
         }
         $this->connection = self::$databases[$connDetails];
+       
+        $this->signupdate();
     }
 
     // RUN SQL =========================================================
@@ -128,9 +130,8 @@ class FireWorks{
     public function gravatar( $email, $img = false, $s = 80, $d = 'mm', $r = 'g', $atts = array() ) {
         //
 
-        //$url = 'https://www.gravatar.com/avatar/';
-        //$url .= md5( strtolower( trim( $email ) ) );
-        $url = './img/mm.png';
+        $url = 'https://www.gravatar.com/avatar/' . md5( strtolower( trim( $email ) ) );
+        //$url = './img/mm.png';
 
         if ( $img ) {
             $url .= "?s=$s&d=$d&r=$r";
@@ -164,14 +165,10 @@ class FireWorks{
             $password = $this->sql_inj($password);
             $sha_pwd = $password; //sha1($password);
 
-            $result =  $this->fetchAll("SELECT * FROM $this->tb_user WHERE ( username='$username' OR email='$username' ) AND password='$sha_pwd'");
-            if (isset($result[0])){
-                unset($result[0]->password);
-                $result[0]->gravatar = $this->gravatar($result[0]->email);
-                $result[0]->policy = json_decode($result[0]->policy);
-                //session_destroy();
-                //session_start();
-                $_SESSION['user'] = $result[0];
+            $result =  $this->fetchAll("SELECT * FROM $this->tb_user WHERE ( username='$username' OR email='$username' ) AND password='$sha_pwd'")[0];
+            if (isset($result)){
+                $_SESSION['user'] = $result;
+                $this->signupdate();
 
                 $this->log( "SIGNIN ".$username ) ;
                 $ret = true;
@@ -195,6 +192,23 @@ class FireWorks{
         }
         session_destroy();
     }
+
+    // SIGNUPDATE =========================================================
+    public function signupdate() {
+        global $_SESSION;
+        
+        if ( isset($_SESSION['user']) ){
+            $id = $_SESSION['user']->id;
+
+            $this->fetchAll("UPDATE `user` SET `last_update` = now() WHERE `id` = '$id'");
+            $s = $this->fetchAll("SELECT * FROM user WHERE `id` = '$id'")[0];
+            $s->gravatar = $this->gravatar($s->email);
+            $s->policy = json_decode($s->policy);
+            unset($s->password);
+            $_SESSION['user'] = $s;
+        }
+    }
+
     // ACCESS =========================================================
     public function policy($acl) {
         global $_SESSION;

@@ -47,6 +47,7 @@
         <input type="hidden" ng-model="sc.id">
         <input type="hidden" ng-model="sc.type">
 
+
         <div class="equal width fields">
             <!--div class="field">
                 <label>Type de contrats <i class="red asterisk icon"></i></label>
@@ -56,12 +57,13 @@
                     <option value="Genie Civile">Genie Civile</option>
                 </select>
             </div-->
+            
 
             <div class="field">
                 <label>Responsable de la structure bénéficiaire <i class="red asterisk icon"></i></label>
                 <select id="sc_dir" ng-model="sc.dir" class="ui upper">
                     <option value="" selected hidden></option>
-                    <option ng-repeat="ele in $parent.userList | filter:{rule:'directeur'}" value="{{ele.username}}">{{ele.username}}</option>
+                    <option ng-repeat="ele in $parent.userList | filter:{policy:{directeur:true}} | orderBy: 'username'" value="{{ele.username}}">{{ele.username | uppercase}}</option>
                 </select>
             </div>
 
@@ -69,7 +71,7 @@
                 <label>Pole <i class="red asterisk icon"></i></label>
                 <select id="sc_pole" ng-model="sc.pole" class="ui upper">
                     <option value="" selected hidden></option>
-                    <option ng-repeat="ele in $parent.userList | filter:{rule:'chantier'}" value="{{ele.username}}">{{ele.username}}</option>
+                    <option ng-repeat="ele in $parent.userList | filter:{policy:{directeur: '!true', chantier: 'true'}} | orderBy: 'username'" value="{{ele.username}}">{{ele.username | uppercase}}</option>
                 </select>
             </div>
 

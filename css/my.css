@@ -14,3 +14,22 @@ body{
 .di{
 	color: #e5e5e5;
 }
+
+.bullet{
+	position: absolute;
+	height: 12px;
+	width: 12px;
+	border:2px solid #fff;
+	border-radius: 100%;
+	z-index: 999;
+}
+
+.bullet.active{
+	background-color: #0f0;
+} 
+.bullet.notactive{
+	background-color: #bbb;
+} 
+.bullet.disabled{
+	background-color: #f00;
+} 

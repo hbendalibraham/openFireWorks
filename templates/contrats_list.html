@@ -28,6 +28,7 @@
         </div>
     </div>
     <H1>Procurement: Achat locaux</H1>
+    <div style="overflow: auto;">
     <table class="ui sortable celled selectable red table upper">
         <thead>
             <tr>
@@ -115,6 +116,7 @@
             </tr>
         </tfoot>
     </table>
+    </div>
 </div>
 
 <!--  Procurement: Achat International  -->
@@ -133,6 +135,7 @@
         </div>
     </div>
     <h1>Procurement: Achat International</h1>
+    <div style="overflow: auto;">
     <table class="ui sortable celled selectable red table">
         <thead>
             <tr>
@@ -219,6 +222,7 @@
             </tr>
         </tfoot>
     </table>
+    </div>
 </div>
 
 <!--  contrat des sous-traitance BATIMENT  -->
@@ -237,6 +241,8 @@
         </div>
     </div>
     <h1>Contrats des sous-traitance BATIMENT</h1>
+
+    <div style="overflow: auto;">
     <table class="ui sortable celled selectable red table">
         <thead>
             <tr>
@@ -261,7 +267,7 @@
                 <th>D. Enregistrement</th>
             </tr>
         </thead>
-        <tbody>           
+        <tbody>
             <tr
                 ng-repeat="ele in list_contrats_st | filter:q  | filter:{ type: 'Batiment' } | orderBy:id:true | limitTo:nele_pr_al  as total3"
             >   
@@ -317,6 +323,7 @@
             </tr>
         </tfoot>
     </table>
+    </div>
 </div>
 
 <!--  contrat des sous-traitance GENIE CIVILE  -->
@@ -335,6 +342,7 @@
         </div>
     </div>
     <h1>Contrat des sous-traitance GENIE CIVILE</h1>
+    <div style="overflow: auto;">
     <table class="ui sortable celled selectable red table">
         <thead>
             <tr>
@@ -415,6 +423,7 @@
             </tr>
         </tfoot>
     </table>
+    </div>
 </div>
 
 <!--  Etude   -->
@@ -433,6 +442,7 @@
         </div>
     </div>
     <h1>Etudes</h1>
+    <div style="overflow: auto;">
     <table class="ui sortable celled selectable red table">
         <thead>
             <tr>
@@ -517,4 +527,5 @@
             </tr>
         </tfoot>
     </table>
+    </div>
 </div>

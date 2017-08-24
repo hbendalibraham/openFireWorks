@@ -160,6 +160,22 @@ function echo_html($element){
       </div>
     </div>
 
+    <div class="item">
+      <i class="la la-ellipsis-v s1 en"></i>
+      <div class="ui checkbox">
+        <input type="checkbox" name="policy_chantier" ng-model="profile.policy.chantier">
+        <label>Chantier</label>
+      </div>
+    </div>
+
+    <div class="item">
+      <i class="la la-ellipsis-v s1 en"></i>
+      <div class="ui checkbox">
+        <input type="checkbox" name="policy_facturation" ng-model="profile.policy.facturation">
+        <label>Facturation</label>
+      </div>
+    </div>
+
 
     <div class="item">
       <i class="la la-flask s1 en"></i>

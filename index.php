@@ -103,7 +103,21 @@ QSE;
 
       if ($fw->policy('contact_c') || $fw->policy('contact_m'))
         echo '<a class="item" href="#!/contacts_list"><i class="la s1 la-credit-card"></i>Contacts</a>';
+
+
+      if ($fw->policy('level') == 1)
+        echo <<< menu_tools
+    <div class="ui dropdown item top_menu">
+      <i class="la s1 la-cubes" ></i> Utilités
+        <div class="menu">
+          <a class="item" href="#!/user_list"> <i class="la s1 la-users"></i> List des utilisateur</a>
+        </div>
+    </div>
+menu_tools;
+
+        
     ?>
+
 
 
     <!--div class="ui dropdown item top_menu">
@@ -142,15 +156,14 @@ QSE;
             <a class="item" href="#"> <i class="la s1 la-edit"></i> Facture</a>
           </div>
         </div>
-    </div-->
+    </div>
 
     <div class="ui dropdown item top_menu">
       <i class="la s1 la-cubes" ></i> Utilités
         <div class="menu">
-          <!--a class="item" href="#!/profile/0"> <i class="la s1 la-plus"></i> Nouveau utilisateur</a-->
           <a class="item" href="#!/user_list"> <i class="la s1 la-users"></i> List des utilisateur</a>
         </div>
-    </div>
+    </div-->
 
     <div class="right menu">
       <div class="ui dropdown item">
@@ -172,7 +185,7 @@ QSE;
     </div>
   </div>
   
-  <div style="border:0; margin-top: 60px; padding: 20px" ng-view></div>
+  <div style="border:0; margin-top: 60px; padding: 20px" ng-controller="IndexController" ng-view></div>
 
   <!--  myAppJS  -->
   <script src="js/app.js"></script>

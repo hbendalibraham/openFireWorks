@@ -1,6 +1,6 @@
 <div style="height: 76px"></div>
 
-<form class="ui form" name="form">
+<form class="ui form" name="form" ng-model="profile" ng-submit="form.$valid && submit()">
   <div class="ui top attached secondary segment">
     <input type="hidden" name="id" ng-model="profile.id">
     
@@ -164,10 +164,11 @@
       <i class="remove icon"></i>
       Supprimer l'utilisateur
     </div>
-    <button class="ui green ok button" ng-click="save()" type="submit" ng-class="{'loading':spiner_save}">
+    <button class="ui green ok button" ng-click="submit()" type="submit" ng-class="{'loading':spiner_save}">
       <i class="checkmark icon"></i>
       Enregistrer
     </button>
+
   </div>
   
   <!--div class="ui attached error message"></div-->
