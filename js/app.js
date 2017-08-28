@@ -85,6 +85,10 @@ var myApp = angular
       templateUrl: 'templates/about.html'
     })
 
+    .when('/contactez_nous', {
+      templateUrl: 'templates/contactez_nous.html'
+    })
+
     .when('/help', {
       templateUrl: 'templates/help.html'
     })
@@ -361,7 +365,7 @@ var myApp = angular
     console.log("- Load PR");
     $http.get('api/?contrat=pr')
       .then(function(res){
-        $scope.list_contrats_pr = res.data;
+        $scope.list_contrats_pr = res.data.result;
         //console.log($scope.list_contrats_pr)
       })
   ;   // --> $http PR => {}
@@ -372,7 +376,7 @@ var myApp = angular
     console.log("- Load ST");
     $http.get('api/?contrat=st')
       .then(function(res){
-        $scope.list_contrats_st = res.data;
+        $scope.list_contrats_st = res.data.result;
         //console.log($scope.list_contrats_st)
       })  
   ;   // --> $http ST
@@ -383,7 +387,7 @@ var myApp = angular
     console.log("- Load ET");
     $http.get('api/?contrat=et')
       .then(function(res){
-        $scope.list_contrats_et = res.data;
+        $scope.list_contrats_et = res.data.result;
         //console.log($scope.list_contrats_et)
       })
   ;   // --> $http ET
@@ -439,7 +443,7 @@ var myApp = angular
     $http.get('api/?contact=fournisseur')
       .then(function(r){
         console.log("- load fournisseur");
-        $scope.$parent.fournisseur = r.data;
+        $scope.$parent.fournisseur = r.data.result;
     });
 
   if ($routeParams.id != 0)
@@ -447,7 +451,7 @@ var myApp = angular
     console.log("- load contrat N°" + $routeParams.id);
     $http.get('api/?contrat=pr&n=' + $routeParams.id)
     .then(function (r) {
-      $scope.sc = r.data[0];
+      $scope.sc = r.data.result[0];
       $scope.sc.date_a   = $scope.sc.date_a   == null ? null : new Date($scope.sc.date_a);
       $scope.sc.date_ap  = $scope.sc.date_ap  == null ? null : new Date($scope.sc.date_ap);
       $scope.sc.date_c   = $scope.sc.date_c   == null ? null : new Date($scope.sc.date_c);
@@ -473,18 +477,21 @@ var myApp = angular
 
       $http.post('api/?contrat=update&tc=pr', $scope.sc, {headers: { 'Content-Type': 'application/json; charset=utf-8' }})
       .then(function (r) {
-        console.log("# done!");
-        $scope.msg=r.msg;
         $scope.save = 2;
-        $location.path('contrats_list');
-        
+        if (r.data.errorCode != null){
+          console.log("# Err! " + r.data.errorCode);
+          $scope.msg=r.data.message;
+        }else{
+          console.log("# done!");
+          $scope.msg="";
+          $location.path('contrats_list');
+        }
       },      
       function(r){
         console.log("# Err");
         console.log(r);
-        $scope.msg=r.err;
+        $scope.msg=r.data.message;
         $scope.save = -1;
-
       });
 
     }else{
@@ -492,6 +499,30 @@ var myApp = angular
       $scope.save = -1;
     }
   }
+
+  $scope.delete = function(){
+    $scope.del = true;
+    if ($scope.sc.id != "0" && $scope.sc.id != "" && confirm("Etre vous sure de vouloir supprimer ce contrats ?")){
+     
+      $http.post('./api/?contrat=dlpr&n='+$scope.sc.id)
+      .then(function (r) {
+        if (r.data.errorCode != null){
+          console.log("-> delete field");
+        }else{
+          console.log("-> delete done!");
+          $location.path('contrats_list');
+        }
+      },      
+      function(){
+        console.log("-> delete field");
+      });
+
+      $scope.del = false;
+    }else{
+      $scope.del = false;
+    }
+  }
+
 
   $scope.$parent.spinner = false;
 })
@@ -556,28 +587,53 @@ var myApp = angular
       $scope.sc.pole   = document.getElementById("sc_pole").value;
       $scope.sc.dir    = document.getElementById("sc_dir").value;
 
-      $http({
-        method  : 'POST',
-        url     : 'api/?contrat=update&tc=st',
-        data    : $.param($scope.sc),  // pass in data as strings
-        headers : {'Content-Type': 'application/x-www-form-urlencoded'}  // set the headers so angular passing info as form data (not request payload)
-      })
-      .success(function(data) {
-        $scope.msg=data.api;
-        console.log("# "+$scope.msg[0]);
+      $http.post('api/?contrat=update&tc=st', $scope.sc, {headers: { 'Content-Type': 'application/json; charset=utf-8' }})
+      .then(function (r) {
         $scope.save = 2;
-      })
-      .error(function(data) {
-        $scope.msg=data.api;
-        console.log("# "+$scope.msg[0]);
+        if (r.data.errorCode != null){
+          console.log("# Err! " + r.data.errorCode);
+          $scope.msg=r.data.message;
+        }else{
+          console.log("# done!");
+          $scope.msg="";
+          $location.path('contrats_list');
+        }
+      },      
+      function(r){
+        console.log("# Err");
+        console.log(r);
+        $scope.msg=r.data.message;
         $scope.save = -1;
-      })
-      ;
+      });
+
     }else{
       $scope.msg='Verifiey les champs "Type de cahiers des charges" et  "Nature de cahiers des charges"';
       $scope.save = -1;
     }
 
+  }
+
+  $scope.delete = function(){
+    $scope.del = true;
+    if ($scope.sc.id != "0" && $scope.sc.id != "" && confirm("Etre vous sure de vouloir supprimer ce contrats ?")){
+     
+      $http.post('./api/?contrat=dlst&n='+$scope.sc.id)
+      .then(function (r) {
+        if (r.data.errorCode != null){
+          console.log("-> delete field");
+        }else{
+          console.log("-> delete done!");
+          $location.path('contrats_list');
+        }
+      },      
+      function(){
+        console.log("-> delete field");
+      });
+
+      $scope.del = false;
+    }else{
+      $scope.del = false;
+    }
   }
 
   $scope.$parent.spinner = false;
@@ -639,26 +695,51 @@ var myApp = angular
       $scope.sc.dir  = document.getElementById("sc_dir").value;
       $scope.sc.pole = document.getElementById("sc_pole").value;
 
-      $http({
-        method  : 'POST',
-        url     : 'api/?contrat=update&tc=et',
-        data    : $.param($scope.sc),  // pass in data as strings
-        headers : {'Content-Type': 'application/x-www-form-urlencoded'}  // set the headers so angular passing info as form data (not request payload)
-      })
-      .success(function(data) {
-        $scope.msg=data.api;
-        console.log("# "+$scope.msg[0]);
+      $http.post('api/?contrat=update&tc=et', $scope.sc, {headers: { 'Content-Type': 'application/json; charset=utf-8' }})
+      .then(function (r) {
         $scope.save = 2;
-      })
-      .error(function(data) {
-        $scope.msg=data.api;
-        console.log("# "+$scope.msg[0]);
+        if (r.data.errorCode != null){
+          console.log("# Err! " + r.data.errorCode);
+          $scope.msg=r.data.message;
+        }else{
+          console.log("# done!");
+          $scope.msg="";
+          $location.path('contrats_list');
+        }
+      },      
+      function(r){
+        console.log("# Err");
+        console.log(r);
+        $scope.msg=r.data.message;
         $scope.save = -1;
-      })
-      ;
+      });
+
     }else{
       $scope.msg='Verifiey les champs "Type de cahiers des charges" et  "Nature de cahiers des charges"';
       $scope.save = -1;
+    }
+  }
+
+  $scope.delete = function(){
+    $scope.del = true;
+    if ($scope.sc.id != "0" && $scope.sc.id != "" && confirm("Etre vous sure de vouloir supprimer ce contrats ?")){
+     
+      $http.post('./api/?contrat=dlet&n='+$scope.sc.id)
+      .then(function (r) {
+        if (r.data.errorCode != null){
+          console.log("-> delete field");
+        }else{
+          console.log("-> delete done!");
+          $location.path('contrats_list');
+        }
+      },      
+      function(){
+        console.log("-> delete field");
+      });
+
+      $scope.del = false;
+    }else{
+      $scope.del = false;
     }
   }
 

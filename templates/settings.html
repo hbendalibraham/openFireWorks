@@ -1,68 +1,62 @@
-<div style="height: 76px"></div>
+<div class="ui container">
 
-<!--div class="ui active dimmer">
-  <div class="ui large text loader">Loading</div>
-</div-->
-
-<form class="ui form" name="form" >
-  <div class="ui top attached secondary segment">
-    <input type="hidden" name="id" ng-model="profile.id">
-    
-    <!--img src="{{profile.gravatar}}?s=180&d=mm"-->
-    <div class="ui center aligned basic segment">
-      <img src="img/image.png" data-src="https://s.gravatar.com/avatar/abea01f5957411556b300b80cece3db7" height="160">
-      <h2>Settings</h2>
-    </div>
-
-
-    <p></p>
-  
-  </div>
-  <div class="ui attached segment">
-    <p>
-      <div class="ui blue ribbon label">
-        <i class="unlock alternate icon"></i> 1<sup>st</sup> Parameter
+  <form class="ui form" name="form" >
+    <div class="ui top attached secondary segment">
+      <input type="hidden" name="id" ng-model="profile.id">
+      
+      <!--img src="{{profile.gravatar}}?s=180&d=mm"-->
+      <div class="ui center aligned basic segment">
+        <img src="img/image.png" data-src="https://s.gravatar.com/avatar/abea01f5957411556b300b80cece3db7" height="160">
+        <h2>Settings</h2>
       </div>
-    </p>
 
-    <div class="equal width fields">
-      <div class="field">
-        <label> Nom d'utilisateur </label>
-        <div class="ui left corner labeled input rmv_corner">
-          <input type="text" placeholder="Nom d'utilisateur" id="username" ng-model="profile.username" min="3" max="20" required>
-          <div class="ui left corner label">
-            <i class="inverted asterisk icon"></i>
+
+      <p></p>
+    
+    </div>
+    <div class="ui attached segment">
+      <p>
+        <div class="ui blue ribbon label">
+          <i class="unlock alternate icon"></i> 1<sup>st</sup> Parameter
+        </div>
+      </p>
+
+      <div class="equal width fields">
+        <div class="field">
+          <label> Nom d'utilisateur </label>
+          <div class="ui left corner labeled input rmv_corner">
+            <input type="text" placeholder="Nom d'utilisateur" id="username" ng-model="profile.username" min="3" max="20" required>
+            <div class="ui left corner label">
+              <i class="inverted asterisk icon"></i>
+            </div>
+          </div>
+          <div class="ui pointing red inverted label" ng-show="form.username.$invalid && form.username.$touched">
+            Choisir un nom d'utilisateur entre 3 et 20 character !
           </div>
         </div>
-        <div class="ui pointing red inverted label" ng-show="form.username.$invalid && form.username.$touched">
-          Choisir un nom d'utilisateur entre 3 et 20 character !
-        </div>
       </div>
+
     </div>
 
-  </div>
 
+    <div class="ui bottom attached right aligned secondary segment">
+        
+      <div class="ui info message" ng-show="msg">
+        <i class="close icon"></i>
+        <ul class="list">
+          {{msg}}
+        </ul>
+      </div>
 
-  <div class="ui bottom attached right aligned secondary segment">
-      
-    <div class="ui info message" ng-show="msg">
-      <i class="close icon"></i>
-      <ul class="list">
-        {{msg}}
-      </ul>
+      <button class="ui green ok button" ng-click="save()" type="submit" ng-class="{'loading':spiner_del}">
+        <i class="checkmark icon"></i>
+        Enregistrer
+      </button>
     </div>
+    
+    <!--div class="ui attached error message"></div-->
 
-    <div class="ui cancel button" ng-click="delete()"  ng-class="{'loading':spiner_save}">
-      <i class="remove icon"></i>
-      Supprimer l'utilisateur
-    </div>
-    <button class="ui green ok button" ng-click="save()" type="submit" ng-class="{'loading':spiner_del}">
-      <i class="checkmark icon"></i>
-      Enregistrer
-    </button>
-  </div>
-  
-  <!--div class="ui attached error message"></div-->
+    <p></p>
+  </form>
 
-  <p></p>
-</form>
+</div>

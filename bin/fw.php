@@ -11,7 +11,7 @@ ini_set("display_errors", 1);
 
 // Prepart connexion à la base de données
 // FireWorks ('host|username|password|bdd');
-$fw = new FireWorks('127.0.0.1|root|root|tinyCMS');
+$fw = new FireWorks('127.0.0.1|root|genesis|tinycms');
 
 //$fw->telegram_api = "156659332:AAFCyXi94dL02gXaHlzRGw7Mk9WZsfMMN1A";
 //$fw->telegram_id  = "127969204";
@@ -46,13 +46,15 @@ class FireWorks{
 
         if ($result){
             $result = array();
-            $lastInsertId       = $this->connection->lastInsertId();
-            $result = $statement->fetchAll(PDO::FETCH_OBJ);
-            $result["id"]       = $lastInsertId;
-            $result["error"]    = $statement->errorInfo();
-            if ($debug){
-                $result["sql"]  = $sql;
-            }
+            $result['sqlState']  = $statement->errorInfo()[0];
+            $result['errorCode'] = $statement->errorInfo()[1];
+            $result['message']   = $statement->errorInfo()[2];
+            $result['id']        = $this->connection->lastInsertId();
+            $result['result']    = $statement->fetchAll(PDO::FETCH_OBJ);
+
+            if ($debug)
+             $result['sqlquery'] = $sql;
+
             return $result;
         }else
             return $statement->fetchAll(PDO::FETCH_OBJ);

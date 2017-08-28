@@ -1,4 +1,4 @@
-<div class="article">
+<div class="ui container">
 
     <div class="ui attached message">
         <div class="header"> Fiche de suivi des Etudes </div>
@@ -15,7 +15,8 @@
         </div>
     </div>
 
-    <form class="ui form attached fluid segment" name="form" novalidate >
+    <form class="ui form" name="form" ng-model="sc" ng-submit="form.$valid && submit()" >
+    <div class="ui attached fluid segment">
 
         <div class="print_ignore">
             <div class="ui mini steps">
@@ -189,19 +190,17 @@
             <input type="text" placeholder="Observation" maxlength="512" ng-model="sc.obs">
         </div>
 
-        <div class="ui field right aligned print_ignore">
-            <button class="ui button " ng-click="submit()" ng-class="{'loading': save==1}">Enregistrer</button>
+        <div class="ui field print_ignore">
+            <button class="ui green ok right floated button " ng-click="submit()" ng-class="{'loading': save==1}"><i class="checkmark icon"></i> Enregistrer</button>
         </div>
+        <p>&nbsp;</p>
 
-    </form>
 
-    <div class="ui bottom mini attached message print_ignore" ng-class="{'hidden': !msg , 'red': msg[0]=='error', 'teal':msg[0]=='done!'}">
-        <i class="close icon"></i>
-        <div class="header">{{msg[1]}}</div>
-        <ul class="list">
-            <li ng-repeat="value in msg[2]">{{value}}</li>
-        </ul>
+        <div class="ui compact red message" ng-class="{'hidden': !msg , 'red': msg}">{{msg}}</div>
     </div>
-
+    <div class="ui bottom attached right aligned secondary segment print_ignore">
+        <button class="ui green ok button " ng-click="submit()" ng-class="{'loading': save==1}"><i class="checkmark icon"></i> Enregistrer</button>
+    </div>
+    </form>
 
 </div>

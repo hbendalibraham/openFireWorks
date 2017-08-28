@@ -5,7 +5,6 @@ require_once('../bin/fw.php');
 header('Content-Type: application/json');
 
 $sql = "";
-$msg = "";
 $err = "";
 $result = "";
 $debug = isset($_GET["debug"])?true:false;
@@ -44,8 +43,7 @@ else if ($fw->signin())
         }
         else
         {
-            $err = true;
-            $msg = "Session not found!";
+            $err = "Session not found!";
         }
     }
     
@@ -135,58 +133,55 @@ else if ($fw->signin())
 
                 if ($_GET['tc'] == "pr")
                 { // if procurement
-                    if (!isset($contrat->id)      || $contrat->id      == "") array_push($err, "ID");
-                    if (!isset($contrat->type)    || $contrat->type    == "") array_push($err, "Type de cahiers des charges");
-                    if (!isset($contrat->nature)  || $contrat->nature  == "") array_push($err, "Nature de cahiers des charges");
+                    if (!isset($contrat->nature)  || $contrat->nature  == "") $err = "Nature de cahiers des charges";
+                    if (!isset($contrat->type)    || $contrat->type    == "") $err = "Type de cahiers des charges";
+                    if (!isset($contrat->id)      || $contrat->id      == "") $err = "ID";
                 
                 }
                 else if ($_GET['tc'] == "st")
                 { // if sous traitant
-                    if (!isset($contrat->id)      || $contrat->id      == "") array_push($err, "ID");
-                    if (!isset($contrat->type)    || $contrat->type    == "") array_push($err, "Type de contrats");
-                    if (!isset($contrat->dir)     || $contrat->dir     == "") array_push($err, "Responsable de la structure bénéficiaire");
-                    if (!isset($contrat->pole)    || $contrat->pole    == "") array_push($err, "Pole");
-                    if (!isset($contrat->int_prj) || $contrat->int_prj == "") array_push($err, "Intitulé du projet");
+                    if (!isset($contrat->int_prj) || $contrat->int_prj == "") $err = "Intitulé du projet";
+                    if (!isset($contrat->pole)    || $contrat->pole    == "") $err = "Pole";
+                    if (!isset($contrat->dir)     || $contrat->dir     == "") $err = "Responsable de la structure bénéficiaire";
+                    if (!isset($contrat->type)    || $contrat->type    == "") $err = "Type de contrats";
+                    if (!isset($contrat->id)      || $contrat->id      == "") $err = "ID";
 
                 }
                 else if ($_GET['tc'] == "et")
                 { // if etude
-                    if (!isset($contrat->id)      || $contrat->id      == "") array_push($err, "ID");
-                    if (!isset($contrat->dir)     || $contrat->dir     == "") array_push($err, "Responsable de la structure bénéficiaire");
-                    if (!isset($contrat->pole)    || $contrat->pole    == "") array_push($err, "Pole");
-                    if (!isset($contrat->int_prj) || $contrat->int_prj == "") array_push($err, "Intitulé du projet");
+                    if (!isset($contrat->id)      || $contrat->id      == "") $err = "ID";
+                    if (!isset($contrat->dir)     || $contrat->dir     == "") $err = "Responsable de la structure bénéficiaire";
+                    if (!isset($contrat->pole)    || $contrat->pole    == "") $err = "Pole";
+                    if (!isset($contrat->int_prj) || $contrat->int_prj == "") $err = "Intitulé du projet";
                 }
                 else
                 { // else error
-                    $err = "Err!";
-                    $msg = "Erreur non reconue !!!";
+                    $err = "Erreur non reconue !!!";
                 }
 
                 if (!$err)
                 {
                     $sql = $fw->sql_gen("contrats_".$_GET['tc'], $contrat, $contrat->id);
-                    $err = $fw->fetchAll($sql,true,true);
-                    $msg = "Fiche de conrtats à jour";
-
+                    //$result = $fw->fetchAll($sql,true,true);
+                    
                 }else{
-                    $err = "Err!" ;
-                    $msg = "Erreur de parametre  manquant !!!";
+                    $err = "Erreur de parametre  manquant !!!";
                 }
 
             }
             else if ($_GET['contrat'] == "dlpr")
             {
-                $sql = "DELETE FROM contrats_pr $wr";
+                if ($wr != "") $sql = "DELETE FROM contrats_pr $wr";
 
             }
             else if ($_GET['contrat'] == "dlst")
             {
-                $sql = "DELETE FROM contrats_st $wr";
+                if ($wr != "") $sql = "DELETE FROM contrats_st $wr";
 
             }
             else if ($_GET['contrat'] == "dlet")
             {
-                $sql = "DELETE FROM contrats_et $wr";
+                if ($wr != "") $sql = "DELETE FROM contrats_et $wr";
 
             }
             else if ($_GET['contrat'] == "pr")
@@ -212,7 +207,7 @@ else if ($fw->signin())
 
             }
 
-            $result = $fw->fetchAll($sql);
+            $result = $fw->fetchAll($sql,true);
 
 
     }
@@ -270,8 +265,7 @@ else if ($fw->signin())
 
 $ret = new \stdClass;
 $ret = $result;
-if ($err) $ret['err'] = $err;
-if ($msg) $ret['msg'] = $msg;
+if ($err) $ret['message'] = $err;
 
 if (isset($_GET["pre"]))
     print_r( $ret );
