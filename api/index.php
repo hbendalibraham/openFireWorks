@@ -63,6 +63,8 @@ else if ($fw->signin())
                 $id = $profile->id;
                 if (strlen($profile->password)<6)
                     unset($profile->password);
+                else
+                    $profile->password = base64_encode($profile->password); // replace password by crypted base64 password
             }
             else
             {
@@ -168,36 +170,22 @@ else if ($fw->signin())
                     $err = "Erreur de parametre  manquant !!!";
                 }
 
-            }
-            else if ($_GET['contrat'] == "dlpr")
-            {
+            }else if ($_GET['contrat'] == "dlpr"){ // delete Procurements
                 if ($wr != "") $sql = "DELETE FROM contrats_pr $wr";
-
-            }
-            else if ($_GET['contrat'] == "dlst")
-            {
+            }else if ($_GET['contrat'] == "dlst"){ // delete Soustraitances
                 if ($wr != "") $sql = "DELETE FROM contrats_st $wr";
-
-            }
-            else if ($_GET['contrat'] == "dlet")
-            {
+            }else if ($_GET['contrat'] == "dlet"){ // delete Etudes
                 if ($wr != "") $sql = "DELETE FROM contrats_et $wr";
+           
 
-            }
-            else if ($_GET['contrat'] == "pr")
-            { // Procurements
+            }else if ($_GET['contrat'] == "pr"){ // list Procurements
                 $sql = "SELECT * FROM contrats_pr $wr ORDER BY id";
-
-            }
-            else if ($_GET['contrat'] == "st")
-            { // Soustraitances
+            }else if ($_GET['contrat'] == "st"){ // list Soustraitances
                 $sql = "SELECT * FROM contrats_st $wr ORDER BY id";
-
-            }else if ($_GET['contrat'] == "et")
-            { // Etudes
+            }else if ($_GET['contrat'] == "et"){ // list Etudes
                 $sql = "SELECT * FROM contrats_et $wr ORDER BY id";
-
             }
+            
             else if ($_GET['contrat'] == null)
             {
 

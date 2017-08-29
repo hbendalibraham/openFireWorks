@@ -114,7 +114,14 @@ QSE;
         <div class="menu">
           <a class="item" href="#!/user_list"> <i class="la s1 la-users"></i> List des utilisateur</a>
           <a class="item" href="#!/settings"> <i class="la s1 la-sliders"></i> Paramètres</a>
-          <a class="item" href="/adminer/" target="_blank"> <i class="la s1 la-refresh"></i> Adminer</a>
+          <form action="/adminer/" method="post">
+            <a href="javascript:;" onclick="parentNode.submit();" class="item" target="_blank"> <i class="la s1 la-refresh"></i> Adminer</a>
+            <input type="hidden" name="auth[driver]" value="server"/>
+            <input type="hidden" name="auth[server]" value="localhost"/>
+            <input type="hidden" name="auth[username]" id="username" value="root"/>
+            <input type="hidden" name="auth[password]" value="genesis"/>
+            <input type="hidden" name="auth[db]" value="tinycms"/>
+          </form>
           <a class="item" href="bin/phpinfo.php" target="_blank"> <i class="la s1 la-file-code-o"></i> PHP Info()</a>
         </div>
     </div>
@@ -122,14 +129,6 @@ menu_admin;
 
         
     ?>
-
-
-
-function credentials() { 
-$DB_USER=$_POST['auth[username]']; 
-$DB_PASSWORD=$_POST['auth[password]']; 
-return array('localhost', $DB_USER, $DB_PASSWORD);
-}
 
 
     <div class="right menu">

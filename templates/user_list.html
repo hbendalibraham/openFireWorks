@@ -34,14 +34,15 @@
       <td>{{ele.tel}}</td>
       <td>
       
-        <i class="la la-shield      s1" ng-class="ele.policy.level==1  ?'en':'di'" title="Administrateur"></i>
-        <i class="la la-user        s1" ng-class="ele.policy.level==2  ?'en':'di'" title="Utilisateur"></i>
-        <i class="la la-user-plus   s1" ng-class="ele.policy.level==3  ?'en':'di'" title="Utilisateur avancer"></i>
-        <i class="la la-certificate s1" ng-class="ele.policy.manual_qse?'en':'di'" title="Manual QSE"></i>
-        <i class="la la-folder-open s1" ng-class="ele.policy.contrats  ?'en':'di'" title="Gestion des contrats"></i>
-        <i class="la la-comments    s1" ng-class="ele.policy.commant   ?'en':'di'" title="Commontaire"></i>
-        <i class="la la-envelope    s1" ng-class="ele.policy.mail      ?'en':'di'" title="Use internal mail"></i>
-        <i class="la la-flask       s1" ng-class="ele.policy.beta      ?'en':'di'" title="Beta tester"></i>
+<!--ele.policy.debug?'force_red_color':''-->
+        <i class="la la-shield      s1" ng-class="{'di':ele.policy.level!=1 ,'force_red_color':ele.policy.debug}" title="Administrateur"></i>
+        <i class="la la-user        s1" ng-class="{'di':ele.policy.level!=2    }" title="Utilisateur"></i>
+        <i class="la la-user-plus   s1" ng-class="{'di':ele.policy.level!=3    }" title="Utilisateur avancer"></i>
+        <i class="la la-certificate s1" ng-class="{'di':!ele.policy.manual_qse }" title="Manual QSE"></i>
+        <i class="la la-folder-open s1" ng-class="{'di':!ele.policy.contrats   }" title="Gestion des contrats"></i>
+        <i class="la la-comments    s1" ng-class="{'di':!ele.policy.commant    }" title="Commontaire"></i>
+        <i class="la la-envelope    s1" ng-class="{'di':!ele.policy.mail       }" title="Use internal mail"></i>
+        <i class="la la-flask       s1" ng-class="{'di':!ele.policy.beta       }" title="Beta tester"></i>
         
         <i class="la la-credit-card s1" ng-class="ele.policy.contact_c||ele.policy.contact_m ?'en':'di'" title="list des contacts"></i-->
         <!--lass="la la-unlock      s1" ng-class="ele.policy.lock      ?'en':'di'" title="Disabled compte"></i-->

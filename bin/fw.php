@@ -52,7 +52,7 @@ class FireWorks{
             $result['id']        = $this->connection->lastInsertId();
             $result['result']    = $statement->fetchAll(PDO::FETCH_OBJ);
 
-            if ($debug)
+            if ($this->policy('debug'))
              $result['sqlquery'] = $sql;
 
             return $result;
@@ -165,9 +165,9 @@ class FireWorks{
         }else{
             $username = $this->sql_inj($username);
             $password = $this->sql_inj($password);
-            $sha_pwd = $password; //sha1($password);
+            $pwd      = base64_encode($password); //sha1($password);
 
-            $result =  $this->fetchAll("SELECT * FROM $this->tb_user WHERE ( username='$username' OR email='$username' ) AND password='$sha_pwd'")[0];
+            $result =  $this->fetchAll("SELECT * FROM $this->tb_user WHERE ( username='$username' OR email='$username' ) AND password='$pwd'")[0];
             if (isset($result)){
                 $_SESSION['user'] = $result;
                 $this->signupdate();

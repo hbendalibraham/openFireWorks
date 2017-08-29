@@ -159,14 +159,8 @@
         </ul>
       </div>
 
-      <div class="ui cancel button" ng-click="delete()" ng-class="{'loading':spiner_del}">
-        <i class="remove icon"></i>
-        Supprimer l'utilisateur
-      </div>
-      <button class="ui green ok button" ng-click="submit()" type="submit" ng-class="{'loading':spiner_save}">
-        <i class="checkmark icon"></i>
-        Enregistrer
-      </button>
+      <div class="ui cancel button" ng-click="delete()" ng-class="{'loading':spiner_del}"> <i class="remove icon"></i> Supprimer l'utilisateur </div>
+      <button class="ui green ok button" ng-click="submit($parent)" type="submit" ng-class="{'loading':spiner_save}"> <i class="checkmark icon"></i> Enregistrer </button>
 
     </div>
     

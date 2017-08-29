@@ -752,6 +752,7 @@ var myApp = angular
 // ==================================================================================================
 .controller('ProfileController', function ($scope,$http,$routeParams,$location) {
   console.log("> %cProfile",'color: #0f0');
+  console.log($scope);
   $scope.spiner_save = false;
   $scope.spiner_del  = false;
   $scope.profile = {'id':null,'username':null,'password':null,'firstname':null,'lastname':null,'email':null,'department':null,'directeur':null,'mobile':null,'tel':null,'fax':null,'address':null,'signature':null,'policy':null};
@@ -780,13 +781,13 @@ var myApp = angular
     $(".rmv_corner .ui.left.corner.label").remove();
   }
 
-  $scope.submit = function(){
+  $scope.submit = function(z){
     //if ( $('.ui.form').form('is valid') ){
     if ( $scope.profile ){
       $scope.spiner_save = true;
 
       console.log("- prepare to save");
-      console.log($scope.profile);
+      //console.log($scope.profile);
 
       //$scope.profile      
 
@@ -798,29 +799,30 @@ var myApp = angular
         }
       });
 
-      console.log($scope.profile);
-
-      $http.post('api/?user=s&debug', $scope.profile, {headers: { 'Content-Type': 'application/json; charset=utf-8' }})
+      $http.post('api/?user=s', $scope.profile, {headers: { 'Content-Type': 'application/json; charset=utf-8' }})
       .then(function (r) {
-        console.log("# ");
-        console.log(r);
 
         if (r.data.id != "0")
           $scope.profile.id = r.data.id;
-
-        $scope.spiner_save = false;
         
-        if (r.data.error[1] == null){
-          $scope.msg = "Profile enregistrer";
-          delete $scope.$parent.userList;
+        if (r.data.errorCode == null){
+          $scope.msg = "# Profile enregistrer";
+          $http.get('api/?user=a')
+            .then(function(res){
+              z.userList = res.data;
+              console.log('- Load user list ' + z.userList.length );
+            })
+          ;
           $location.path('user_list');
+
         }else{
-          $scope.msg = r.data.error[2];
-          console.log("# %cerror: "+ r.data.error[2], 'color:#f00;');
-        }        
+          $scope.msg = r.data.message;
+          console.log("# %cerror: "+ r.data.message, 'color:#f00;');
+        }
+        $scope.spiner_save = false;
       },      
       function(){
-        $scope.msg = "Erreur d'enregistrement";
+        $scope.msg = "# Erreur d'enregistrement";
         console.log("# %cfield!", 'color:#f00;');
         $scope.spiner_save = false;
       });
@@ -836,10 +838,10 @@ var myApp = angular
         //console.log(r);
         console.log("- delete");
         
-        if (!r.data.error){
+        if (!r.data.errorCode){
           console.log("# %cfiled!",'color:#f00');
           $location.path('user_list');          
-        }else if (r.data.error[1] != null){
+        }else if (r.data.errorCode != null){
           console.log("# %cfiled!",'color:#f00');
         }else{
           delete $scope.$parent.userList;

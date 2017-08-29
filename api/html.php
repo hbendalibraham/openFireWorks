@@ -24,6 +24,7 @@ function echo_html($element){
         <label>Lock</label>
       </div>
     </div>
+    
     <div class="item">
       <i class="la la-shield s1 en"></i>
       <div class="ui radio checkbox">
@@ -31,6 +32,14 @@ function echo_html($element){
         <label>Admin</label>
       </div>
     </div>
+    <div class="item" style="background:#fee;">
+      <i class="la la-ellipsis-v s1 en"></i>
+      <div class="ui checkbox">
+        <input type="checkbox" name="debug" ng-model="profile.policy.debug">
+        <label>debug</label>
+      </div>
+    </div>
+
     <div class="item">
       <i class="la la-user s1 en"></i>
       <div class="ui radio checkbox">
@@ -177,7 +186,7 @@ function echo_html($element){
     </div>
 
 
-    <div class="item">
+    <div class="item" style="background:#eff;">
       <i class="la la-flask s1 en"></i>
       <div class="ui checkbox">
         <input type="checkbox" name="policy_beta" ng-model="profile.policy.beta">

@@ -15,6 +15,14 @@ body{
 	color: #e5e5e5;
 }
 
+.force_red_color{
+	color: #F00 !important;
+}
+
+.force_red_bgcolor{
+	background-color: #F00 !important;
+}
+
 .bullet{
 	position: absolute;
 	height: 12px;
