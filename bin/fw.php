@@ -115,8 +115,6 @@ class FireWorks{
             }else{
                 $val="null";
             }
-            //echo $val."\n";
-           
         }else{
             $val = "'".$this->sql_inj($val)."'";
         }
