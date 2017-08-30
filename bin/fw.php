@@ -109,8 +109,14 @@ class FireWorks{
     {
         if (substr($key,0,5) =="date_")
         {
-            $val = "'".date("Y-m-d", strtotime( substr($val, 0, strpos($val, '('))))."'";
-            if ($val=="'1970-01-01'") $val="null";
+            if ($val != null){
+                $date = new DateTime($val);
+                $val = "'".$date->format('Y-m-d')."'";
+            }else{
+                $val="null";
+            }
+            //echo $val."\n";
+           
         }else{
             $val = "'".$this->sql_inj($val)."'";
         }
