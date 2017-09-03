@@ -201,18 +201,12 @@ else if ($fw->signin())
     }
 
     //============================================================================================
-    else if (isset($_GET['prod']))
+    else if (isset($_GET['produit']))
     {
-        
         if (isset($_GET['all']))
         {
-            $result = $fw->fetchAll("SELECT * FROM $fw->tb_user WHERE 1");
+            $result = $fw->fetchAll("SELECT * FROM produits WHERE 1");
         }
-        else if (isset($_GET['add']))
-        {
-            $result = "not yet";
-        }
-
     }
 
     //============================================================================================

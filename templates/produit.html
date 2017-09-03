@@ -1,0 +1,148 @@
+<div class="ui container">
+  <form class="ui form" name="form">
+    <div class="ui top attached secondary segment">
+      <input type="hidden" name="id" ng-model="contact.id">
+      
+      <!--img src="{{contact.gravatar}}?s=180&d=mm"-->
+      <div class="ui center aligned basic segment">
+        <img src="img/image.png" data-src="https://s.gravatar.com/avatar/abea01f5957411556b300b80cece3db7" height="160">
+        <h2>{{produit.ref}}</h2>
+        {{produit.designation}}
+      </div>
+
+
+      <p></p>
+    
+    </div>
+    <div class="ui attached segment">
+
+      <p>
+        <div class="ui blue ribbon label"><i class="user icon"></i> Prodtuit</div>
+      </p>
+      
+      <div class="field">
+        <label>Déségnation</label>
+        <input type="text" ng-model="produit.designation" placeholder="Designation" required>
+      </div>
+
+      <div class="equal width fields">
+        <div class="field">
+          <label>Réf</label>
+          <input type="text" placeholder="Référances" ng-model="produit.ref" required>
+        </div>
+        <div class="field">
+          <label>Fournisseur</label>
+          <select class="ui dropdown" id="unite" ng-model="produit.fournisseur">
+            <option value="">Type d'unité'</option>
+            <option value=""></option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Famille</label>
+          <input type="text" placeholder="" ng-model="produit.fam">
+        </div>
+        <div class="field">
+          <label>Sous famille</label>
+          <input type="text" placeholder="" ng-model="produit.sfam">
+        </div>
+      </div>
+
+      <div class="equal width fields">
+        <div class="field">
+          <label>Stock</label>
+          <input type="number" step="0.01" min="0" placeholder="" ng-model="produit.stock" stringToNumber>
+        </div>
+        <div class="field">
+          <label>Stock MIN</label>
+          <input type="number" step="0.01" min="0" placeholder="" ng-model="produit.stk_max" stringToNumber>
+        </div>
+        <div class="field">
+          <label>Stock MAX</label>
+          <input type="number" step="0.01" min="0" placeholder="" ng-model="produit.stk_min" stringToNumber>
+        </div>
+        <div class="field">
+          <label>Unité</label>
+          <select class="ui dropdown" id="unite" ng-model="produit.u">
+            <option value="">Type d'unité'</option>
+            <option value="p">PCS</option>
+            <option value="u">U</option>
+            <option value="M">M</option>
+            <option value="c">cm</option>
+            <option value="m">mm</option>
+            <option value="L">L</option>
+            <option value="T">T</option>
+            <option value="K">Kg</option>
+            <option value="g">gr</option>
+            <option value="F">P</option>
+            <option value="I">"</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="equal width fields">
+        <div class="field">
+          <label>Prix Achat</label>
+          <input type="number" step="0.01" min="0" placeholder="" ng-model="produit.prx_achat">
+        </div>
+        <div class="field">
+          <label>Prix Vente</label>
+          <input type="number" step="0.01" min="0" placeholder="" ng-model="produit.prx_vente">
+        </div>
+        <div class="field">
+          <label>Prix PMP clculé</label>
+          <input type="number" step="0.01" min="0" placeholder="" ngmodel="produit.prx_pmp" readonly="true">
+        </div>
+      </div>
+
+      <div class="equal width fields">
+        <div class="field">
+          <label>Date péremption</label>
+          <input type="date" placeholder="" ng-model="produit.date_peremption">
+        </div>
+        <div class="field">
+          <label>Date fin de guarantie</label>
+          <input type="date" placeholder="" ng-model="produit.date_fin_guarantie">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Dépot</label>
+        <input type="text" ng-model="produit.depot" placeholder="Dépot">
+      </div>
+
+
+
+      <div class="field">
+        <label>Note</label>
+        <textarea ng-model="produit.note"></textarea>
+      </div>
+
+      
+    </div>
+
+
+    <div class="ui bottom attached right aligned secondary segment">
+      
+      <div class="ui info message" ng-show="msg">
+        <i class="close icon"></i>
+        <ul class="list">
+          {{msg}}
+        </ul>
+      </div>
+
+      <div class="ui cancel button" ng-click="delete()" ng-class="{'loading':spiner_del}">
+        <i class="remove icon"></i>
+        Supprimer
+      </div>
+      <button class="ui green ok button" ng-click="submit()" type="submit" ng-class="{'loading':spiner_save}">
+        <i class="checkmark icon"></i>
+        Enregistrer
+      </button>
+    </div>
+    
+    <!--div class="ui attached error message"></div-->
+
+    <p></p>
+  </form>
+
+</div>

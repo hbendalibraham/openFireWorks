@@ -36,11 +36,11 @@ var myApp = angular
 
     .when('/contacts_list', {
       templateUrl: 'templates/contacts_list.html',
-      controller: 'ContactsListController'
+      controller: 'contactsListCtrl'
     })
     .when('/contact/:id', {
       templateUrl: 'templates/contact.html',
-      controller: 'ContactController'
+      controller: 'contactCtrl'
     })
 
     .when('/settings', {
@@ -51,6 +51,15 @@ var myApp = angular
     .when('/contrats_list', {
       templateUrl: 'templates/contrats_list.html',
       controller: 'ContratsListController'
+    })
+
+    .when('/produit_list', {
+      templateUrl: 'templates/produit_list.html',
+      controller: 'produitListCtrl'
+    })
+    .when('/produit/:id', {
+      templateUrl: 'templates/produit.html',
+      controller: 'produitCtrl'
     })
 
     .when('/contrat_pr/:id/:tp', {
@@ -133,6 +142,181 @@ var myApp = angular
   };
 })
 
+// ==================================================================================================
+// == BETA ==========================================================================================
+// ==================================================================================================
+// ==================================================================================================
+
+// ==================================================================================================
+.controller('produitListCtrl', function ($scope, $http) {
+  if (!$scope.$parent.produits_list)
+    $http.get('api/?produit=all')
+      .then(function(res){
+        $scope.$parent.produits_list = res.data;
+        console.log("-> ProduitsList");
+        console.log($scope.$parent.produits_list);
+      })
+    ;
+
+})
+// ==================================================================================================
+.controller('produitCtrl', function ($scope, $http, $routeParams) {
+  $scope.produit = {
+    id:0,
+    ref:null,
+    designation:'',
+    fournisseur:null,
+    stock:0,
+    stk_min:0,
+    stk_max:0,
+    u:null,
+    fam:null,
+    s_fam:null,
+    prx_achat:0,
+    prx_vente:0,
+    date_fabrication:null,
+    date_peremption:null,
+    date_fin_guarantie:null,
+    depot:'',
+    note:''
+  };
+
+  $('.ui.dropdown')
+    .dropdown()
+  ;
+
+  if ($routeParams.id != "0"){
+    $http.get('api/?contact='+$scope.contact.id)
+      .then(function(res){
+        //res.data[0].credit = Number (res.data[0].credit) ;
+        $scope.contact = res.data[0];
+      })
+    ;
+  }
+
+  $scope.submit = function(){
+    if ($scope.form.$valid)
+      console.log($scope.produit);
+  }
+
+  $scope.delete = function(){
+  }
+
+})
+// ==================================================================================================
+// ==================================================================================================
+// ==================================================================================================
+.controller('contactsListCtrl', function ($scope,$http) {
+  if (!$scope.$parent.contacts_list)
+    $http.get('api/?contact')
+      .then(function(res){
+        $scope.$parent.contacts_list = res.data;
+      })
+    ;
+})
+// ==================================================================================================
+.controller('contactCtrl', function ($scope,$http,$routeParams,$location) {
+  $scope.cv = {
+    id:0,
+    nom:'',
+    contact:[{name:null, type:null, value:null}],
+    address:'',
+    type_contact:null,
+    credit:0,
+    note:''
+  };
+
+  $('.ui.dropdown')
+    .dropdown()
+  ;
+
+  console.log($scope.cv);
+
+  if ($routeParams.id != "0"){
+    $http.get('api/?contact='+$scope.contact.id)
+      .then(function(res){
+        res.data[0].more_contact = angular.fromJson(res.data[0].more_contact);
+        res.data[0].credit = Number (res.data[0].credit) ;
+        $scope.contact = res.data[0];
+        console.log("-> Contact "+$scope.contact.id);
+        console.log($scope.contact);
+      })
+    ;
+  }
+
+  $scope.add_number = function(){
+    $scope.cv.contact.push({name:null, type:null, value:null});
+  }
+
+  $scope.submit = function(){
+    if ( $scope.cv_form.$valide ){
+      $scope.spiner_save = true;
+      $scope.cv.contact = angular.toJson($scope.cv.contact);
+
+      console.log("save");
+      console.log($scope.cv);
+
+      $http.post('api/?contact=s', $scope.cv, {headers: { 'Content-Type': 'application/json; charset=utf-8' }})
+      .then(function (r) {
+        console.log(r);
+
+        if (r.data.id != "0")
+          $scope.cv.id = r.data.id;
+
+        if (r.data.error[1] == null)
+          $scope.msg = "cv enregistrer";
+        else
+          $scope.msg = r.data.error[2];
+        
+        console.log("-> done!");
+        $scope.spiner_save = false;
+        delete $scope.$parent.contacts_list;
+        $location.path('contacts_list');
+      },      
+      function(){
+        $scope.msg = "Erreur d'enregistrement";
+        console.log("-> field");
+        $scope.spiner_save = false;
+      });
+    }
+  }
+
+  $scope.delete = function(){
+    $scope.spiner_del = true;
+    if ($scope.contact.id != "0" && $scope.contact.id != "" && confirm("Etre vous sure de vouloir supprimer ce contact ?")){
+      
+      $http.post('./api/?contact=d&id='+$scope.contact.id)
+      .then(function (r) {
+        console.log(r);
+        if (!r.data.error){
+          console.log("-> delete field");
+          $location.path('contacts_list');          
+        }else if (r.data.error[1] != null){
+          console.log("-> delete field");
+        }else{
+          delete $scope.$parent.contacts_list;
+          console.log("-> delete done!");
+          $location.path('contacts_list');
+        }
+      },      
+      function(){
+        console.log("-> delete field");
+      });
+      $scope.spiner_del = false;
+    }else{
+      $scope.spiner_del = false;
+    }
+  }
+
+})
+
+
+
+
+// ==================================================================================================
+// ==================================================================================================
+// ==================================================================================================
+// ==================================================================================================
 
 // ==================================================================================================
 .controller('IndexController', function ($scope, $http) {

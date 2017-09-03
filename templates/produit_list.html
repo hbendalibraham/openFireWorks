@@ -1,0 +1,36 @@
+<a href="#!/produit/0" class="ui button">
+  <i class="plus icon"></i>
+  Nouveau produit
+</a>
+<div class="ui icon input">
+  <i class="search icon"></i>
+  <input type="text" placeholder="Search..." ng-model="q">
+</div>
+
+<h1>List des produits</h1>
+
+<table class="ui selectable single line red table" >
+  <thead>
+    <th>Nom / Réson sociale</th>
+    <th>Activiter</th>
+    <th>Tel</th>
+    <th>Fax</th>
+    <th>Mobile</th>
+    <th>Email</th>
+    <th>Famille</th>
+    <!--th>Credit</th-->
+  </thead>
+  <tbody>
+    <tr ng-repeat="ele in $parent.produits_list | filter:q | limitTo:50">
+      <td> <a href="#!/contact/{{ele.id}}"> {{ele.nom}} </a> </td>
+      <td>{{ele.activite}}</td>
+      <td>{{ele.tel}}</td>
+      <td>{{ele.fax}}</td>
+      <td>{{ele.mobile}}</td>
+      <td>{{ele.email}}</td>
+      <td>{{ele.famille}}</td>
+      <!--td class="right aligned" ng-class="{'positive':ele.credit>0, 'error':ele.credit<0}">{{ele.credit | currency:"DA"}}</td-->
+    </tr>
+  </tbody>
+</table>
+  

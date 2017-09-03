@@ -106,6 +106,15 @@ QSE;
       if ($fw->policy('contact_c') || $fw->policy('contact_m'))
         echo '<a class="item" href="#!/contacts_list"><i class="la s1 la-envelope"></i>Contacts</a>';
 
+      if ($fw->policy('beta'))
+        echo <<< menu_beta
+    <div class="ui dropdown item top_menu">
+      <i class="la s1 la-coffee" ></i> Beta
+        <div class="menu">
+          <a class="item" href="#!/produit_list"> <i class="la s1 la-cubes"></i> Produit</a>
+        </div>
+    </div>
+menu_beta;
 
       if ($fw->policy('level') == 1)
         echo <<< menu_admin
