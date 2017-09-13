@@ -1,0 +1,244 @@
+<link rel="stylesheet" type="text/css" href="css/form.css">
+
+<div class="article">
+  <div class="ui piled segment page">
+    <a class="print_ignore ui red ribbon label" ng-show="form_status">{{frm.n}}</a>
+
+	<img src="img/cosider.png" style="position: absolute;">
+	
+	<div class="center"><h2>OBJECTIFS ENVIRONNEMENTAUX / SST.</h2></div>
+
+	<hr class="lines">
+
+	<p>
+		<p>Semestre: <input type="text" ng-model="frm.sem" ng-disabled="lock" size="10"> Exercice: <input type="text" ng-model="frm.ex" ng-disabled="lock" size="10"></p>
+		<p>Site: <input type="text" ng-model="frm.site" ng-disabled="lock" size="50" ></p>
+		<b><u>A - OBJECTIFS ENVIRONNEMENTAUX</u></b>
+	</p>
+
+	<div class="box center" style="background-color:#9EC0FF;">
+		<b>1 - RECUPERATION DES DECHETS</b>
+	</div>
+
+
+	<table class="tables">
+		<thead>
+			<tr>
+				<td rowspan="2" width="20%">Aspect</td>
+				<td rowspan="2" width="20%">Objectif arret&eacute;</td>
+				<td colspan="3">Objectifs r&eacute;alis&eacute;</td>
+				<td colspan="2">Atteinte Objectif</td>
+			</tr>
+			<tr>
+				<td>Quantit&eacute;</td>
+				<td>Um</td>
+				<td>%</td>
+				<td>Oui</td>
+				<td>Non</td>
+			</tr>
+		</thead>
+
+		<tr>
+			<td>Huiles usag&eacute;es</td>
+			<td>75% r&eacute;cup&eacute;r&eacute;s</td>
+			<td><textarea ng-model="frm.HUq" ng-disabled="lock"></textarea></td>
+			<td class="str">L</td>
+			<td><textarea ng-model="frm.HUp" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.HUo" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.HUn" ng-disabled="lock"></textarea></td>
+		</tr>
+		<tr>
+			<td>Batteries usag&eacute;es</td>
+			<td>100% r&eacute;cup&eacute;r&eacute;s</td>
+			<td><textarea ng-model="frm.BUq" ng-disabled="lock"></textarea></td>
+			<td class="str">U</td>
+			<td><textarea ng-model="frm.BUp" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.BUo" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.BUn" ng-disabled="lock"></textarea></td>
+		</tr>
+		<tr>
+			<td>Pneus usag&eacute;es</td>
+			<td>100% r&eacute;cup&eacute;r&eacute;s</td>
+			<td><textarea ng-model="frm.PUq" ng-disabled="lock"></textarea></td>
+			<td class="str">U</td>
+			<td><textarea ng-model="frm.PUp" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.PUo" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.PUn" ng-disabled="lock"></textarea></td>
+		</tr>
+		<tr>
+			<td>Toners usag&eacute;es</td>
+			<td>100% r&eacute;cup&eacute;r&eacute;s</td>
+			<td><textarea ng-model="frm.TUq" ng-disabled="lock"></textarea></td>
+			<td class="str">U</td>
+			<td><textarea ng-model="frm.TUp" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.TUo" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.TUn" ng-disabled="lock"></textarea></td>
+		</tr>
+		<tr>
+			<td>Plaintes parties int&eacute;ress&eacute;es</td>
+			<td class="str">0</td>
+			<td colspan="2"><textarea ng-model="frm.PPIq" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.PPIp" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.PPIo" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.PPIn" ng-disabled="lock"></textarea></td>
+		</tr>
+		<tr>
+			<td>P&eacute;nalit&eacute;s</td>
+			<td class="str">0</td>
+			<td colspan="2"><textarea ng-model="frm.Pq" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.Pp" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.Po" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.Pn" ng-disabled="lock"></textarea></td>
+		</tr>
+	</table>
+	<br>
+	<table class="tables">
+		<tr>
+			<td rowspan="3" class="hd" width="20%">D&eacute;versements Hydrocarbures Accidentels</td>
+			<td rowspan="2" class="hd">Nombre</td>
+			<td rowspan="2" class="hd">Quantit&eacute; L</td>
+			<td colspan="2" class="hd">Maitris&eacute;</td>
+			<td colspan="2" class="hd">Stock&eacute; (sable souill&eacute;)</td>
+		</tr>
+		<tr>
+			<td class="hd">Oui</td>
+			<td class="hd">Non</td>
+			<td class="hd">Oui</td>
+			<td class="hd">Non</td>
+		</tr>
+		<tr>
+			<td><textarea ng-model="frm.Nbr" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.Qua" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.Moui" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.Mnon" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.Soui" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.Snon" ng-disabled="lock"></textarea></td>
+		</tr>
+	</table>
+	
+	<br>
+
+	<div class="box center" style="background-color:#9EC0FF;">
+		<b>2 - ECONOMIE D'EENERGIE</b>
+	</div>
+	
+	<table class="tables">
+		<thead>
+			<tr>
+				<td rowspan="2" width="20%">&nbsp;</td>
+				<td rowspan="2">Objectif annuel arret&eacute; &agrave;</td>
+				<td colspan="3">Objectifs r&eacute;alis&eacute;s (Da/h)</td>
+				<td rowspan="2">Evolution + ou - &agrave; N - 1</td>
+				<td colspan="2">R&eacute;sultats</td>
+			</tr>
+			<tr>
+				<td>S1</td>
+				<td>S2</td>
+				<td>annuel</td>
+				<td>P</td>
+				<td>N</td>
+			</tr>
+		</thead>
+		<tr>
+			<td>Ratio &eacute;lectricit&eacute;</td>
+			<td><textarea ng-model="frm.E1" ng-disabled="lock" placeholder="<...DA/h"></textarea></td>
+			<td><textarea ng-model="frm.E2" ng-disabled="lock" placeholder="....Da/h"></textarea></td>
+			<td><textarea ng-model="frm.E3" ng-disabled="lock" placeholder="....Da/h"></textarea></td>
+			<td><textarea ng-model="frm.E4" ng-disabled="lock" placeholder="....Da/h"></textarea></td>
+			<td><textarea ng-model="frm.E5" ng-disabled="lock" placeholder="....Da/h"></textarea></td>
+			<td><textarea ng-model="frm.E6" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.E7" ng-disabled="lock"></textarea></td>
+		</tr>
+		<tr>
+			<td>Ratio eau</td>
+			<td><textarea ng-model="frm.O1" ng-disabled="lock" placeholder="<...DA/h"></textarea></td>
+			<td><textarea ng-model="frm.O2" ng-disabled="lock" placeholder="....Da/h"></textarea></td>
+			<td><textarea ng-model="frm.O3" ng-disabled="lock" placeholder="....Da/h"></textarea></td>
+			<td><textarea ng-model="frm.O4" ng-disabled="lock" placeholder="....Da/h"></textarea></td>
+			<td><textarea ng-model="frm.O5" ng-disabled="lock" placeholder="....Da/h"></textarea></td>
+			<td><textarea ng-model="frm.O6" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.O7" ng-disabled="lock"></textarea></td>
+		</tr>
+		<tr>
+			<td>Ratio carburant</td>
+			<td><textarea ng-model="frm.C1" ng-disabled="lock" placeholder="<...DA/h"></textarea></td>
+			<td><textarea ng-model="frm.C2" ng-disabled="lock" placeholder="....Da/h"></textarea></td>
+			<td><textarea ng-model="frm.C3" ng-disabled="lock" placeholder="....Da/h"></textarea></td>
+			<td><textarea ng-model="frm.C4" ng-disabled="lock" placeholder="....Da/h"></textarea></td>
+			<td><textarea ng-model="frm.C5" ng-disabled="lock" placeholder="....Da/h"></textarea></td>
+			<td><textarea ng-model="frm.C6" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.C7" ng-disabled="lock"></textarea></td>
+		</tr>
+	</table>
+	<b><u>B - OBJECTIFS SST:</u></b>
+	<table class="tables">
+		<thead>
+			<tr>
+				<td rowspan="2">Risque</td>
+				<td rowspan="2">Objectif arret&eacute;</td>
+				<td rowspan="2">Objectifs r&eacute;alis&eacute;</td>
+				<td colspan="2">Atteinte Objectif</td>
+			</tr>
+			<tr>
+				<td>Oui</td>
+				<td>Non</td>
+			</tr>
+		</thead>
+		<tr>
+			<td>TF</td>
+			<td><textarea ng-model="frm.TF1" ng-disabled="lock" placeholder="< ...."></textarea></td>
+			<td><textarea ng-model="frm.TF2" ng-disabled="lock" placeholder="  ...."></textarea></td>
+			<td><textarea ng-model="frm.TF3" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.TF4" ng-disabled="lock"></textarea></td>
+		</tr>
+		<tr>
+			<td>TG</td>
+			<td><textarea ng-model="frm.TG1" ng-disabled="lock" placeholder="< ...."></textarea></td>
+			<td><textarea ng-model="frm.TG2" ng-disabled="lock" placeholder="  ...."></textarea></td>
+			<td><textarea ng-model="frm.TG3" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.TG4" ng-disabled="lock"></textarea></td>
+		</tr>
+	</table>
+	<br>
+	<table class="tables">
+		<tr>
+			<td rowspan="3" class="hd">MEDECINE DE  TRAVAIL</td>
+			<td colspan="2" class="hd">Op&eacute;rationnele</td>
+			<td colspan="2" class="hd">En cours</td>
+		</tr>
+		<tr>
+			<td class="hd">Oui</td>
+			<td class="hd">Non</td>
+			<td class="hd">Oui</td>
+			<td class="hd">Non</td>
+		</tr>
+		<tr>
+			<td><textarea ng-model="frm.MT1" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.MT2" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.MT3" ng-disabled="lock"></textarea></td>
+			<td><textarea ng-model="frm.MT4" ng-disabled="lock"></textarea></td>
+		</tr>
+	</table>
+		Si r&eacute;sultat n&eacute;gatif ; joindre les PA<br>
+		P - positif.<br>
+		N - n&eacute;gatif.<br>
+	<div style="text-align: right;">
+		<b>PRO-01-ENR-10</b>
+	</div>
+
+</div>
+  <div class="ui labeled button floated right print_ignore" ng-show="form_status"  onclick="print();">
+    <div class="ui black button"><i class="print icon"></i></div>
+    <a class="ui basic left pointing label">Imprimer</a>
+  </div>
+  <div class="print_ignore" ng-show="!form_status"> 
+    <div class="ui labeled button floated right" ng-click="send_form('pro-01-enr-10')">
+      <div class="ui red button"><i class="send icon"></i></div>
+      <a class="ui basic left pointing label">Envoyer</a>
+    </div>
+    <div class="ui labeled button floated right" ng-click="clear_form()">
+      <div class="ui button"><i class="delete icon"></i></div>
+      <a class="ui basic left pointing label">Effacer</a>
+    </div>
+  </div>
+</div>

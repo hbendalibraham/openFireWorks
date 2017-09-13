@@ -1,0 +1,115 @@
+<link rel="stylesheet" type="text/css" href="css/form.css">
+
+<div class="article">
+  <div class="ui piled segment page">
+    <a class="print_ignore ui red ribbon label" ng-show="form_status">{{frm.n}}</a>
+    
+  <img src="img/cosider.png" style="position: absolute;">
+
+  <table style="width: 100%; height: 100%;">
+    <tr style="height: 2cm; text-align: center; border-bottom: 2px solid #000;">
+      <td><br><br><p><h2>QUESTIONNAIRE DE MESURE DE SATISFACTION<br>CLIENT</h2></p></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;vertical-align: top;">        
+
+        <div style="height: 3cm;">
+          <div style="float: left; width: 40%; padding: 0 30px;">
+            <p>
+              Client: <input type="text" ng-model="frm.client" ng-disabled="lock">
+            </p>
+            <p>
+              Project: <input type="text" ng-model="frm.prj" ng-disabled="lock">
+            </p>
+            <p>
+              Pole: <input type="text" ng-model="frm.pole" ng-disabled="lock">
+            </p>
+          </div>
+        </div>
+
+        <table class="tables">
+          <thead>
+            <tr>
+              <th>Critères</th>
+              <th>Très satisfaisant</th>
+              <th>Satisfaisant</th>
+              <th>Mécontent</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>Qualité des traveaux</td>
+            <td><textarea ng-model="frm.A1" ng-disabled="lock" style="heigth:100%;"></textarea></td>
+            <td><textarea ng-model="frm.A2" ng-disabled="lock" style="heigth:100%;"></textarea></td>
+            <td><textarea ng-model="frm.A3" ng-disabled="lock" style="heigth:100%;"></textarea></td>
+          </tr>
+          <tr>
+            <td>Réactivité (rapidité de réagir aux réclamations)</td>
+            <td><textarea ng-model="frm.B1" ng-disabled="lock" style="heigth:100%;"></textarea></td>
+            <td><textarea ng-model="frm.B2" ng-disabled="lock" style="heigth:100%;"></textarea></td>
+            <td><textarea ng-model="frm.B3" ng-disabled="lock" style="heigth:100%;"></textarea></td>
+          </tr>
+          <tr>
+            <td>Prise en charge doléances clients</td>
+            <td><textarea ng-model="frm.C1" ng-disabled="lock" style="heigth:100%;"></textarea></td>
+            <td><textarea ng-model="frm.C2" ng-disabled="lock" style="heigth:100%;"></textarea></td>
+            <td><textarea ng-model="frm.C3" ng-disabled="lock" style="heigth:100%;"></textarea></td>
+          </tr>
+          <tr>
+            <td>Respect des délais</td>
+            <td><textarea ng-model="frm.D1" ng-disabled="lock" style="heigth:100%;"></textarea></td>
+            <td><textarea ng-model="frm.D2" ng-disabled="lock" style="heigth:100%;"></textarea></td>
+            <td><textarea ng-model="frm.D3" ng-disabled="lock" style="heigth:100%;"></textarea></td>
+          </tr>
+          <tr>
+            <td>Accueil dans les structures</td>
+            <td><textarea ng-model="frm.E1" ng-disabled="lock" style="heigth:100%;"></textarea></td>
+            <td><textarea ng-model="frm.E2" ng-disabled="lock" style="heigth:100%;"></textarea></td>
+            <td><textarea ng-model="frm.E3" ng-disabled="lock" style="heigth:100%;"></textarea></td>
+          </tr>
+          <tr>
+            <td>Sécurité générale</td>
+            <td><textarea ng-model="frm.F1" ng-disabled="lock" style="heigth:100%;"></textarea></td>
+            <td><textarea ng-model="frm.F2" ng-disabled="lock" style="heigth:100%;"></textarea></td>
+            <td><textarea ng-model="frm.F3" ng-disabled="lock" style="heigth:100%;"></textarea></td>
+          </tr>
+        </table>
+
+        <div class="box">
+          <p>COMMENTAIRES &Eacute;VENTUELS:</p>
+          <textarea style="height: 4cm" ng-model="frm.comment" ng-disabled="lock"></textarea>
+        </div>
+
+
+        <div style="float: left; width: 40%; padding: 0 30px;">
+          Date: <input type="text" ng-model="frm.dat" ng-disabled="lock">
+        </div>
+        <div style="float: right; width: 40%; padding: 0 30px;">
+          Visa: <input type="text" ng-model="frm.visa" ng-disabled="lock">
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td style="height: 1%; text-align: right; font-weight: bold;">
+        PRO-13-ENR-02
+      </td>
+    </tr>
+  </table>
+
+
+</div>
+  <div class="ui labeled button floated right print_ignore" ng-show="form_status"  onclick="print();">
+    <div class="ui black button"><i class="print icon"></i></div>
+    <a class="ui basic left pointing label">Imprimer</a>
+  </div>
+  <div class="print_ignore" ng-show="!form_status"> 
+    <div class="ui labeled button floated right" ng-click="send_form('pro-13-enr-02')">
+      <div class="ui red button"><i class="send icon"></i></div>
+      <a class="ui basic left pointing label">Envoyer</a>
+    </div>
+    <div class="ui labeled button floated right" ng-click="clear_form()">
+      <div class="ui button"><i class="delete icon"></i></div>
+      <a class="ui basic left pointing label">Effacer</a>
+    </div>
+  </div>
+</div>

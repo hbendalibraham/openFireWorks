@@ -1,0 +1,76 @@
+<link rel="stylesheet" type="text/css" href="css/form.css">
+
+<div class="article">
+  <div class="ui piled segment page">
+    <a class="print_ignore ui red ribbon label" ng-show="form_status">{{frm.n}}</a>
+
+	<img src="img/cosider.png" style="position: absolute;">
+
+		<div class="center"><h2>TABLEAU D'EVALUATION DE LA CONFORMITE AUX EXIGENCES LEGALES ET REGLEMENTAIRES</h2></div>
+		<hr class="lines">
+
+		<p>
+			Site: <input type="text" ng-model="frm.site" size="10" ng-disabled="lock"><br>
+			NT: <input type="text" ng-model="frm.nt" size="10" ng-disabled="lock"> <span style="float: right;">Date: <input type="text" ng-model="frm.date" ng-disabled="lock"></span>
+		</p>
+
+		<table class="tables">
+			<thead>
+				<tr>
+					<td rowspan="2" width="20%">R&eacute;f&eacute;rence des textes r&eacute;glementaires applicables</td>
+					<td rowspan="2" width="20%">Exigences applicables (par article)</td>
+					<td rowspan="2" width="20%">Preuves de conformit&eacute;</td>
+					<td colspan="3" width="20%">Conforme</td>
+					<td rowspan="2" width="20%">Commentaires</td>
+					<td rowspan="2" width="20%">Observation</td>
+
+				</tr>
+				<tr>
+					<td>Oui</td>
+					<td>Non</td>
+					<td>En partie</td>
+				</tr>
+			</thead>
+
+			<tr style="height: 9cm;">
+				<td><textarea ng-model="frm.C1" style="height: 9cm" ng-disabled="lock"></textarea></td>
+				<td><textarea ng-model="frm.C2" style="height: 9cm" ng-disabled="lock"></textarea></td>
+				<td><textarea ng-model="frm.C3" style="height: 9cm" ng-disabled="lock"></textarea></td>
+				<td><textarea ng-model="frm.C4" style="height: 9cm" ng-disabled="lock"></textarea></td>
+				<td><textarea ng-model="frm.C5" style="height: 9cm" ng-disabled="lock"></textarea></td>
+				<td><textarea ng-model="frm.C6" style="height: 9cm" ng-disabled="lock"></textarea></td>
+				<td><textarea ng-model="frm.C7" style="height: 9cm" ng-disabled="lock"></textarea></td>
+				<td><textarea ng-model="frm.C8" style="height: 9cm" ng-disabled="lock"></textarea></td>
+			</tr>
+		</table>
+		<br><br>
+		<div style="text-align: right;">
+			<b>Visa Correspondants / Animateur:</b><input type="text" ng-model="frm.visa" size="20" ng-disabled="lock">
+		</div>
+		<br>
+		<div style="text-align: center;">
+			<b>1 / 1</b>
+		</div>
+		<div style="text-align: right;">
+			<b>PRO-01-ENR-08</b>
+		</div>
+
+	</div>
+
+
+	<div class="ui labeled button floated right print_ignore" ng-show="form_status"  onclick="print();">
+		<div class="ui black button"><i class="print icon"></i></div>
+		<a class="ui basic left pointing label">Imprimer</a>
+	</div>
+	<div class="print_ignore" ng-show="!form_status"> 
+		<div class="ui labeled button floated right" ng-click="send_form('pro-01-enr-08')">
+		  <div class="ui red button"><i class="send icon"></i></div>
+		  <a class="ui basic left pointing label">Envoyer</a>
+		</div>
+		<div class="ui labeled button floated right" ng-click="clear_form()">
+		  <div class="ui button"><i class="delete icon"></i></div>
+		  <a class="ui basic left pointing label">Effacer</a>
+		</div>
+	</div>
+
+</div>

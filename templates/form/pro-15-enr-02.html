@@ -1,0 +1,143 @@
+<link rel="stylesheet" type="text/css" href="css/form.css">
+
+<div class="article">
+  <div class="ui piled segment page">
+    <a class="print_ignore ui red ribbon label" ng-show="form_status">{{frm.n}}</a>
+    
+    <table style="width: 100%; height: 100%;">
+      <tr style="height: 2cm; text-align: center; border-bottom: 2px solid #000;">
+        <td>
+          <p style="text-align: left;">
+            <img src="img/cosider.png">
+          </p>
+          <p>
+            <h2>FICHE D'INCIDENT</h2>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        
+
+            
+          <div class="two fields">
+
+
+            <div class="field">
+
+              <div class="inline field">
+                <label>N° de fiche d'incident:</label>
+                <input type="text" name="first-name" placeholder="" ng-model="frm.nfinc">
+              </div>
+              <div class="inline field">
+                <label>Pole:</label>
+                <input type="text" name="first-name" placeholder="" ng-model="frm.pole">
+              
+                <label>NT:</label>
+                <input type="text" name="first-name" placeholder="" ng-model="frm.nt">
+              </div>
+            </div>
+            
+
+            <div class="field">
+              <div class="ui checkbox"><input type="checkbox" ng-model="frm.T1"><label>Accident sans arrêt de travail / nom de la victime:<input type="text" name="first-name" placeholder="" ng-model="frm.vic"></label></div>
+              <div class="ui checkbox"><input type="checkbox" ng-model="frm.T2"><label>Presque accident</label></div>
+              <div class="ui checkbox"><input type="checkbox" ng-model="frm.T3"><label>Incident environnemental</label></div>
+              <div class="ui checkbox"><input type="checkbox" ng-model="frm.T4"><label>Autres, précisez</label></div>
+            </div>
+
+          </div>
+            
+
+          <div class="field">
+
+            <table class="ui single line celled table">
+              <thead>
+              <tr>
+                <th>Nature de L'incident</th>
+                <th>Cause Probables</th>
+                <th>Actions correctives</th>
+                <th>Responsable</th>
+                <th>Délais</th>
+                <th>Moyen</th>
+                <th>Evaluation de l'efficacité</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td><input type="text" ng-model="frm.Da1" style="border:0;margin:0;padding:0;"></td>
+                <td><input type="text" ng-model="frm.Da2" style="border:0;margin:0;padding:0;"></td>
+                <td><input type="text" ng-model="frm.Da3" style="border:0;margin:0;padding:0;"></td>
+                <td><input type="text" ng-model="frm.Da4" style="border:0;margin:0;padding:0;"></td>
+                <td><input type="text" ng-model="frm.Da5" style="border:0;margin:0;padding:0;"></td>
+                <td><input type="text" ng-model="frm.Da6" style="border:0;margin:0;padding:0;"></td>
+                <td><input type="text" ng-model="frm.Da7" style="border:0;margin:0;padding:0;"></td>
+              </tr>
+              <tr>
+                <td><input type="text" ng-model="frm.Db1" style="border:0;margin:0;padding:0;"></td>
+                <td><input type="text" ng-model="frm.Db2" style="border:0;margin:0;padding:0;"></td>
+                <td><input type="text" ng-model="frm.Db3" style="border:0;margin:0;padding:0;"></td>
+                <td><input type="text" ng-model="frm.Db4" style="border:0;margin:0;padding:0;"></td>
+                <td><input type="text" ng-model="frm.Db5" style="border:0;margin:0;padding:0;"></td>
+                <td><input type="text" ng-model="frm.Db6" style="border:0;margin:0;padding:0;"></td>
+                <td><input type="text" ng-model="frm.Db7" style="border:0;margin:0;padding:0;"></td>
+              </tr>
+              <tr>
+                <td><input type="text" ng-model="frm.Dc1" style="border:0;margin:0;padding:0;"></td>
+                <td><input type="text" ng-model="frm.Dc2" style="border:0;margin:0;padding:0;"></td>
+                <td><input type="text" ng-model="frm.Dc3" style="border:0;margin:0;padding:0;"></td>
+                <td><input type="text" ng-model="frm.Dc4" style="border:0;margin:0;padding:0;"></td>
+                <td><input type="text" ng-model="frm.Dc5" style="border:0;margin:0;padding:0;"></td>
+                <td><input type="text" ng-model="frm.Dc6" style="border:0;margin:0;padding:0;"></td>
+                <td><input type="text" ng-model="frm.Dc7" style="border:0;margin:0;padding:0;"></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="field">
+
+            <div class="inline field right">
+              <label>Visa:</label>
+              <input type="text" name="first-name" placeholder="" ng-model="frm.Approv">
+            
+              <label>Date:</label>
+              <input type="text" name="first-name" placeholder="" ng-model="frm.le">
+            </div>
+          </div>
+
+        </td>
+      </tr>
+      <tr>
+        <td style="height: 1%; text-align: center;">
+          Page <b>1</b> sur <b>1</b>
+        </td>
+      </tr>
+      <tr>
+        <td style="height: 1%; text-align: right; font-weight: bold;">
+          PRO-15-ENR-02
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
+
+  <div class="ui button floated right print_ignore" ng-show="form_status"  onclick="print();">
+    <i class="print icon"></i> Imprimer
+  </div>
+
+  <div class="print_ignore" ng-show="!form_status"> 
+
+    <div class="ui red button floated right" ng-click="send_form('pro-15-enr-02')">
+      <i class="send icon"></i> Envoyer
+    </div>
+
+    <div class="ui button floated right" ng-click="clear_form()">
+      <i class="delete icon"></i> Effacer
+    </div>
+  </div>
+
+
+</div>
+

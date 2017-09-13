@@ -1,0 +1,385 @@
+<link rel="stylesheet" type="text/css" href="css/form.css">
+
+<div class="article">
+  <div class="ui piled segment page">
+    <a class="print_ignore ui red ribbon label" ng-show="form_status">{{frm.n}}</a>
+    
+    <table style="width: 100%; height: 100%;">
+      <tr style="height: 2cm; text-align: center; border-bottom: 2px solid #000;">
+        <td>
+          <p style="text-align: left;">
+            <img src="img/cosider.png">
+          </p>
+          <p>
+            <h2>RAPPORT D'INCIDENT</h2>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        
+        <div class="ui form">  
+          <div class="field">
+            <div class="ui checkbox">
+              <input type="checkbox" ng-model="frm.pacd">
+              <label>PRESQU'ACCIDENT</label>
+            </div>
+
+            <div class="ui checkbox">
+              <input type="checkbox" ng-model="frm.acd">
+              <label>ACCIDENT</label>
+            </div>
+
+          </div>
+
+          <div class="field">
+            <label>1. Identification de l'accidenté:</label>
+            <table class="ui celled table">
+            <thead>
+              <tr>
+                <th>Nom et prénom</th>
+                <th>Age</th>
+                <th>Poste/catégorie<br>professionnelle</th>
+                <th>Status (permanent ou vacataire)/ancienneté</th>
+                <th>Arrêt detravail<br>(Nbre de jours)</th>
+              </tr>
+              </thead>
+              <tr>
+                <td><input type="text" style="border:0;padding:0;" ng-model="frm.A1"></td>
+                <td><input type="text" style="border:0;padding:0;" ng-model="frm.A2"></td>
+                <td><input type="text" style="border:0;padding:0;" ng-model="frm.A3"></td>
+                <td><input type="text" style="border:0;padding:0;" ng-model="frm.A4"></td>
+                <td><input type="text" style="border:0;padding:0;" ng-model="frm.A5"></td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="field">
+            <label>2. Description de l'accident:</label>
+            <table class="ui single line celled table">
+            <thead>
+              <tr>
+                <th>Lieu</th>
+                <th>Jour de semaine</th>
+                <th>Horaires de travail<br>(08h-16h ou autre)</th>
+                <th>Commentaires</th>
+              </tr>
+              </thead>
+              <tr>
+                <td><input type="text" style="border:0;padding:0;" ng-model="frm.B1"></td>
+                <td><input type="text" style="border:0;padding:0;" ng-model="frm.B2"></td>
+                <td><input type="text" style="border:0;padding:0;" ng-model="frm.B3"></td>
+                <td><input type="text" style="border:0;padding:0;" ng-model="frm.B4"></td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="field">
+            <label>3. Circonstances de l'accident:</label>
+            <table class="ui single line celled table">
+            <thead>
+              <tr>
+                <th colspan="2">Nature de l'accident</th>
+                <th>Commentaires</th>
+              </tr>
+              </thead>
+              <tr>
+                <td>Plain pied</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Ca1"><label></label></div></td>
+                <td><input type="text" style="border:0;padding:0;" ng-model="frm.Ca2"></td>
+              </tr>
+              <tr>
+                <td>Chute en hauteur</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Cb1"><label></label></div></td>
+                <td><input type="text" style="border:0;padding:0;" ng-model="frm.Cb2"></td>
+              </tr>
+              <tr>
+                <td>Manipulation d'appareil de levage</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Cc1"><label></label></div></td>
+                <td><input type="text" style="border:0;padding:0;" ng-model="frm.Cc2"></td>
+              </tr>
+              <tr>
+                <td>Blessure avec corps étranger</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Cd1"><label></label></div></td>
+                <td><input type="text" style="border:0;padding:0;" ng-model="frm.Cd2"></td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="field">
+            <label>4. Causes (facteur) de l'accident:</label>
+
+            <table class="ui celled table">
+              <thead>
+              <tr>
+                <th colspan="2">Matériel</th>
+                <th colspan="2">Technique</th>
+                <th colspan="2">Humain</th>
+                <th colspan="2">EPI</th>
+                <th colspan="2">Nature des lésions</th>
+                <th colspan="2">Siège des lésions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>Chalumeau</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Da1"><label></label></div></td>
+                <td>Absence de protection collective</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Da2"><label></label></div></td>
+                <td>Précipitation</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Da3"><label></label></div></td>
+                <td>Lunettes</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Da4"><label></label></div></td>
+                <td>Fracture</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Da5"><label></label></div></td>
+                <td>Tête</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Da6"><label></label></div></td>
+              </tr>
+              <tr>
+
+                <td>Electricité</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Db1"><label></label></div></td>
+                <td>Défaut de conception</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Db2"><label></label></div></td>
+                <td>Manque d'information</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Db3"><label></label></div></td>
+                <td>Masques</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Db4"><label></label></div></td>
+                <td>Lombago</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Db5"><label></label></div></td>
+                <td>Yeux</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Db6"><label></label></div></td>
+              </tr>
+              <tr>
+                <td>Engin</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Dc1"><label></label></div></td>
+                <td>Encombrement</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Dc2"><label></label></div></td>
+                <td>Fatigue</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Dc3"><label></label></div></td>
+                <td>Casques</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Dc4"><label></label></div></td>
+                <td>Entorse</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Dc5"><label></label></div></td>
+                <td>Tronc</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Dc6"><label></label></div></td>
+              </tr>
+              <tr>
+                <td>Machine outil</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Dd1"><label></label></div></td>
+                <td>Insuffisance d'éclairage</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Dd2"><label></label></div></td>
+                <td>Négligence</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Dd3"><label></label></div></td>
+                <td>Gants</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Dd4"><label></label></div></td>
+                <td>Electrocution</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Dd5"><label></label></div></td>
+                <td>Voies respiratoires</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Dd6"><label></label></div></td>
+              </tr>
+              <tr>
+                <td>Machine pour énergie</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.De1"><label></label></div></td>
+                <td>Matériel défectueux</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.De2"><label></label></div></td>
+                <td>Inattention</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.De3"><label></label></div></td>
+                <td>Chaussures</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.De4"><label></label></div></td>
+                <td>TSLO</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.De5"><label></label></div></td>
+                <td>Bras</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.De6"><label></label></div></td>
+              </tr>
+              <tr>
+                <td>Outil à main</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Df1"><label></label></div></td>
+                <td>Manque d'entretien du de travail</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Df2"><label></label></div></td>
+                <td>Inobservation de consignes</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Df3"><label></label></div></td>
+                <td>Harnais</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Df4"><label></label></div></td>
+                <td>Traumatisme crânien</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Df5"><label></label></div></td>
+                <td>Mains</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Df6"><label></label></div></td>
+              </tr>
+              <tr>
+                <td>Outil portatif</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Dg1"><label></label></div></td>
+                <td></td>
+                <td></td>
+                <td>Fausse manoeuvre</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Dg2"><label></label></div></td>
+                <td></td>
+                <td></td>
+                <td>Plaies</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Dg3"><label></label></div></td>
+                <td>Jambes</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Dg4"><label></label></div></td>
+              </tr>
+              <tr>
+                <td>Objet en cours de manutention manuelle</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Dh1"><label></label></div></td>
+                <td></td>
+                <td></td>
+                <td>Gène due aux tiers</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Dh2"><label></label></div></td>
+                <td></td>
+                <td></td>
+                <td>Ecorchures</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Dh3"><label></label></div></td>
+                <td>Pieds</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Dh4"><label></label></div></td>
+              </tr>
+              <tr>
+                <td>Objet en mouvement</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Di1"><label></label></div></td>
+                <td></td>
+                <td></td>
+                <td>Rixe</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Di2"><label></label></div></td>
+                <td></td>
+                <td></td>
+                <td>Plan clou</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Di3"><label></label></div></td>
+                <td>Lésions multiples</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Di4"><label></label></div></td>
+              </tr>
+              <tr>
+                <td>Vapeur</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Dj1"><label></label></div></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Autres</td>
+                <td><div class="ui checkbox"><input type="checkbox" ng-model="frm.Dk1"><label></label></div></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              </tbody>
+            </table>
+
+
+         </div>
+
+        </div>
+
+        </td>
+      </tr>
+      <tr>
+        <td style="height: 1%; text-align: center;">
+          Page <b>1</b> sur <b>2</b>
+        </td>
+      </tr>
+      <tr>
+        <td style="height: 1%; text-align: right; font-weight: bold;">
+          PRO-15-ENR-01
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
+
+
+
+
+  <div class="ui piled segment page form">
+    <table style="width: 100%; height: 100%;">
+      <tr style="height: 2cm; text-align: center; border-bottom: 2px solid #000;">
+        <td>
+          <a class="print_ignore ui red ribbon label" ng-show="form_status">{{frm.n}}</a>
+          <p style="text-align: left;">
+            <img src="img/cosider.png">
+          </p>
+          <p>
+            <h2>RAPPORT D'INCIDENT</h2>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          
+          <div class="field">
+            <label>5. Analyse de l'incident:</label>
+            <textarea ng-model="frm.Analyse"></textarea>
+          </div>
+
+          <div class="field">
+            <label>6. Recommandations / actions propos&eacute;es:</label>
+            <textarea ng-model="frm.Recommandations"></textarea>
+          </div>
+
+          <div class="field">
+            <label>Etablie par:</label>
+            <input type="text" name="first-name" placeholder="" ng-model="frm.Etablie">
+          </div>
+
+          <div class="field">
+            <label>Approv&eacute;e par:</label>
+            <input type="text" name="first-name" placeholder="" ng-model="frm.Approv">
+          </div>
+
+          <div class="field left">
+            <label>Le:</label>
+            <input type="text" name="first-name" placeholder="" ng-model="frm.le">
+          </div>
+          
+        </td>
+      </tr>
+      <tr>
+        <td style="height: 1%; text-align: center;">
+          Page <b>2</b> sur <b>2</b>
+        </td>
+      </tr>
+      <tr>
+        <td style="height: 1%; text-align: right; font-weight: bold;">
+          PRO-15-ENR-01
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
+
+
+
+
+  <div class="ui button floated right print_ignore" ng-show="form_status"  onclick="print();">
+    <i class="print icon"></i> Imprimer
+  </div>
+
+  <div class="print_ignore" ng-show="!form_status"> 
+
+    <div class="ui red button floated right" ng-click="send_form('pro-15-enr-01')">
+      <i class="send icon"></i> Envoyer
+    </div>
+
+    <div class="ui button floated right" ng-click="clear_form()">
+      <i class="delete icon"></i> Effacer
+    </div>
+  </div>
+
+
+</div>
+

@@ -1,0 +1,127 @@
+<link rel="stylesheet" type="text/css" href="css/form.css">
+
+<div class="article">
+  <div class="ui piled segment page">
+    <a class="print_ignore ui red ribbon label" ng-show="form_status">{{frm.n}}</a>
+    
+	<img src="img/cosider.png" style="position: absolute;">
+
+	<table style="width: 100%; height: 100%;">
+		<tr style="height: 1%">
+			<td>
+				<div style="text-align: center;">
+					<h2>FICHE D'ECART</h2>
+				</div>
+				<hr class="lines">
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: left;vertical-align: top;">
+				<p>&nbsp;<br>
+				Site: <input type="text" ng-model="frm.st" ng-disabled="lock"><br><br>
+				Date: <input type="text" ng-model="frm.dt" ng-disabled="lock"><br><br>
+
+				<p>&nbsp;<br>
+
+				<table class="tables">
+					<thead>
+					<tr>
+						<td colspan="7">FICHE D'ECART</td>
+					</tr>
+					<tr>
+						<td rowspan="2" width="5%">N&deg;</td>
+						<td colspan="3">Type d'ecart</td>
+						<td rowspan="2" width="50%">Libell&eacute; de l'&eacute;cart</td>
+						<td rowspan="2">Preuve</td>
+						<td rowspan="2">R&eacute;f&eacute;rence</td>
+					</tr>
+					<tr>
+						<td width="5%">NC</td>
+						<td width="5%">Rem</td>
+						<td width="5%">Obs</td>
+					</tr>
+					</thead>
+
+					<tr style="height: 2cm;">
+						<td><textarea ng-model="frm.tA1" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tA2" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tA3" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tA4" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tA5" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tA6" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tA7" ng-disabled="lock" style="height:100%"></textarea></td>
+					</tr>
+					<tr style="height: 2cm;">
+						<td><textarea ng-model="frm.tB1" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tB2" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tB3" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tB4" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tB5" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tB6" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tB7" ng-disabled="lock" style="height:100%"></textarea></td>
+					</tr>
+					<tr style="height: 2cm;">
+						<td><textarea ng-model="frm.tC1" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tC2" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tC3" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tC4" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tC5" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tC6" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tC7" ng-disabled="lock" style="height:100%"></textarea></td>
+					</tr>
+					<tr style="height: 2cm;">
+						<td><textarea ng-model="frm.tD1" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tD2" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tD3" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tD4" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tD5" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tD6" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tD7" ng-disabled="lock" style="height:100%"></textarea></td>
+					</tr>
+					<tr style="height: 2cm;">
+						<td><textarea ng-model="frm.tE1" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tE2" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tE3" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tE4" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tE5" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tE6" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tE7" ng-disabled="lock" style="height:100%"></textarea></td>
+					</tr>
+					<tr style="height: 2cm;">
+						<td><textarea ng-model="frm.tF1" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tF2" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tF3" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tF4" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tF5" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tF6" ng-disabled="lock" style="height:100%"></textarea></td>
+						<td><textarea ng-model="frm.tF7" ng-disabled="lock" style="height:100%"></textarea></td>
+					</tr>
+
+				</table>
+
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 1%; text-align: right; font-weight: bold;">
+				PRO-02-ENR-03
+			</td>
+		</tr>
+	</table>
+
+
+</div>
+  <div class="ui labeled button floated right print_ignore" ng-show="form_status"  onclick="print();">
+    <div class="ui black button"><i class="print icon"></i></div>
+    <a class="ui basic left pointing label">Imprimer</a>
+  </div>
+  <div class="print_ignore" ng-show="!form_status"> 
+    <div class="ui labeled button floated right" ng-click="send_form('pro-02-enr-03')">
+      <div class="ui red button"><i class="send icon"></i></div>
+      <a class="ui basic left pointing label">Envoyer</a>
+    </div>
+    <div class="ui labeled button floated right" ng-click="clear_form()">
+      <div class="ui button"><i class="delete icon"></i></div>
+      <a class="ui basic left pointing label">Effacer</a>
+    </div>
+  </div>
+</div>

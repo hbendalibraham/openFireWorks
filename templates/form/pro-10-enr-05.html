@@ -1,0 +1,97 @@
+<link rel="stylesheet" type="text/css" href="css/form.css">
+
+<div class="article">
+  <div class="ui piled segment page">
+    <a class="print_ignore ui red ribbon label" ng-show="form_status">{{frm.n}}</a>
+    
+  <img src="img/cosider.png" style="position: absolute;">
+
+  <table style="width: 100%; height: 100%;">
+    <tr style="height: 2cm; text-align: center; border-bottom: 2px solid #000;">
+      <td><p><br></p>
+        <p>
+          <div style="float: left; width: 40%; padding: 0 30px;">
+            CHANTIER / UNITE: <input type="text" ng-model="frm.ch" ng-disabled="lock">
+          </div>
+          <div style="float: right; width: 40%; padding: 0 30px;">
+            Date: <input type="text" ng-model="frm.dat" ng-disabled="lock"> 
+          </div>
+        </p>
+        <br>
+        <p><h2>FICHE DE SIMULATION N&deg;03<br>&quot;EVACUATION DE SITE&quot;</h2></p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: left;vertical-align: top;">        
+        <p style="text-align: right;">
+        * Fréqunce 1-2-3/an
+        </p>
+
+        <p>
+          <b><u>Sc&eacute;narii(s):</u></b>
+          <div style="width: 25%; float: left"> Séisme <input type="checkbox" ng-model="frm.sei" ng-disabled="lock"> </div>
+          <div style="width: 25%; float: left"> Incendie <input type="checkbox" ng-model="frm.inc" ng-disabled="lock"> </div>
+          <div style="width: 25%; float: left"> Regroupement requis <input type="checkbox" ng-model="frm.reg" ng-disabled="lock"> </div>
+          <div style="width: 25%; float: left"> Autres <input type="checkbox" ng-model="frm.aut" ng-disabled="lock"> </div>
+          <input type="text" ng-model="frm.autres" ng-disabled="lock" size="100"><br><br>
+
+          Heure de déclenchement siréne ( 3 coups ou coup prolongé ): <input type="text" ng-model="frm.h" ng-disabled="lock" size="2"> h <input type="text" ng-model="frm.m" ng-disabled="lock" size="2"> mn<br>
+
+          Effectifs présents sur site : <input type="text" ng-model="frm.eff" ng-disabled="lock"> agent(s)<br>
+
+          Effectifs ayant rejoint le point de rassemblement au bout des 03 minutes fixées : <input type="text" ng-model="frm.pr" ng-disabled="lock"> agent(s)<br>
+
+          Teaux de réaction : <input type="text" ng-model="frm.tr" ng-disabled="lock"><br>
+          Soit : <input type="text" ng-model="frm.str" ng-disabled="lock"><br>
+
+        </p>
+
+
+        <p>
+          <u><b>Analyse de la situation</b></u>
+          <li>
+            <ul>100% rejoint le point de rassemblement : OUI <input type="checkbox" ng-model="frm.oui" ng-disabled="lock">  NON <input type="checkbox" ng-model="frm.non" ng-disabled="lock"></ul>
+            <ul>Moins de 100% soit : <input type="text" ng-model="frm.apr" ng-disabled="lock" size="2"> % ayant le point de rassemblement</ul>
+          </li>
+        </p>
+
+
+
+        <p>
+          <u><b>Actions d&eacute;cid&eacute;es :</b></u>
+          <textarea style="height: 4cm" ng-model="frm.act" ng-disabled="lock"></textarea>
+        </p>
+        
+        <p>
+          <u><b>Recommandations</b></u>
+          <textarea style="height: 4cm" ng-model="frm.rec" ng-disabled="lock"></textarea>
+        </p>
+
+        <sub>* Rayer la mention inutile</sub>
+
+      </td>
+    </tr>
+    <tr>
+      <td style="height: 1%; text-align: right; font-weight: bold;">
+        PRO-10-ENR-05
+      </td>
+    </tr>
+  </table>
+
+
+</div>
+  <div class="ui labeled button floated right print_ignore" ng-show="form_status"  onclick="print();">
+    <div class="ui black button"><i class="print icon"></i></div>
+    <a class="ui basic left pointing label">Imprimer</a>
+  </div>
+  <div class="print_ignore" ng-show="!form_status"> 
+    <div class="ui labeled button floated right" ng-click="send_form('pro-10-enr-05')">
+      <div class="ui red button"><i class="send icon"></i></div>
+      <a class="ui basic left pointing label">Envoyer</a>
+    </div>
+    <div class="ui labeled button floated right" ng-click="clear_form()">
+      <div class="ui button"><i class="delete icon"></i></div>
+      <a class="ui basic left pointing label">Effacer</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,230 @@
+<style type="text/css">
+  .page_v2{
+    width: 21cm;
+    height: 29.7cm;
+    size: 21cm 29.7cm;
+    padding: 1.5cm 2cm;
+
+    display: table;
+    margin: 20px auto;
+    
+    background-color:#fbfdfd;
+
+    border:#ccc solid 1px;
+    border-right:#ccc solid 2px;
+    border-bottom:#ccc solid 2px;
+    box-sizing: border-box;
+
+  }
+  .landscape{
+    size: landscape
+  }
+  .center{
+    text-align: center;
+  }
+  .right{
+    text-align: right
+  }
+  .footer{
+    position: inherit;
+    bottom: 0;
+  }
+
+      .left-arrow {
+        display: inline-block;
+        position: relative;
+        padding: 15px;
+    }
+
+    .left-arrow:after {
+        content: '';
+        display: block;  
+        position: absolute;
+        right: 100%;
+        bottom: 0px;
+        margin-top: -10px;
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-right: 10px solid #555;
+        border-bottom: 10px solid transparent;
+        border-left: 10px solid transparent;
+    }
+
+    hr{
+      size: 1px;
+    }
+
+    .tbl{
+      width: 100%;
+      border: 1px solid #999;
+      border-collapse:collapse;
+      box-sizing: border-box;
+    }
+
+    .tbl td{
+      border: 1px solid #999;
+      padding: 0;
+    }
+    
+
+    input{
+      border: 0;
+      border-bottom: 1px dotted #000;
+      background-color: transparent;
+      text-align: center;
+    }
+
+    textarea{
+      height: 100%; 
+      line-height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: auto;
+      text-align: center;
+      border: 0;
+      background-color: transparent;
+
+      display:inline-block; 
+      vertical-align:middle;
+      -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+         -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
+              box-sizing: border-box;
+    }
+
+</style>
+
+
+
+
+<form ng-model="form" id='toPDF'>
+
+  <div class="page_v2">
+
+    <div><img src="img/cosider.png"></div>
+    <div class="center"><h2>FICHE D'EVALUATION DES SOUS TRAITANTS</h2></div>
+
+    <div align="right">
+      Ann&eacute;e: <input type="text" ng-model="form.annee" size="20" ng-disabled="form_status"> S: <input type="text" ng-model="form.sem" size="10" ng-disabled="form_status">
+    </div>
+
+    <div align="left">
+      <p>Sous traitant: <input type="text" ng-model="form.soust" size="30" ng-disabled="form_status"></p>
+      <p>
+        P&ocirc;le: <input type="text" ng-model="form.pole" size="20" ng-disabled="form_status">
+        NT: <input type="text" ng-model="form.nt" size="10" ng-disabled="form_status">
+        </p>
+    </div>
+
+    <br>
+
+
+    <table class="tbl" min-height="600px">
+      <tr> 
+        <td width="20%"><p align="right"><b>Crit&egrave;re</b></p><p align="left"><b>Op&eacute;rations</b></p></td>
+        <td width="15%" align="center" valign="middle"><b>Qualit&eacute;<br> 1 &agrave; 10</b></td>
+        <td width="15%" align="center" valign="middle"><b>D&eacute;lai<br> 1 &agrave; 10</b></td>
+        <td width="15%" align="center" valign="middle"><b>Moyens engag&eacute;s<br> 1 &agrave; 10</b></td>
+        <td width="15%" align="center" valign="middle"><b>Respect des dispositions SST<br> 1 &agrave; 10 </b></td>
+        <td width="15%" align="center" valign="middle"><b>Respect des dispositions environnementales<br> 1 &agrave; 10 </b></td>
+        <td width="15%" align="center" valign="middle"><b>Note obtenue<br> 5 &agrave; 50</b><br>(C)</td>
+        <td align="center" valign="middle"><b>Observations</b></td>
+      </tr>
+      <tr>
+        <td align="center" valign="middle">I</td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel11" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel12" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel13" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel14" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel15" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel16" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel17" ng-disabled="form_status"></textarea></td>
+      </tr>
+      <tr>
+        <td align="center" valign="middle">II</td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel21" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel22" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel23" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel24" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel25" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel26" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel27" ng-disabled="form_status"></textarea></td>
+      </tr>
+      <tr>
+        <td align="center" valign="middle">III</td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel31" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel32" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel33" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel34" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel35" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel36" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel37" ng-disabled="form_status"></textarea></td>
+      </tr>
+      <tr>
+        <td align="center" valign="middle">IV</td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel41" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel42" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel43" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel44" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel45" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel46" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel47" ng-disabled="form_status"></textarea></td>
+      </tr>
+      <tr>
+        <td align="center" valign="middle">V</td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel51" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel52" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel53" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel54" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel55" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel56" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel57" ng-disabled="form_status"></textarea></td>
+      </tr>
+      <tr>
+        <td align="center" valign="middle">VI</td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel61" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel62" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel63" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel64" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel65" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel66" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel67" ng-disabled="form_status"></textarea></td>
+      </tr>
+      <tr>
+        <td><strong>TOTAL:</strong></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel71" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel72" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel73" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel74" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel75" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel76" ng-disabled="form_status"></textarea></td>
+        <td align="center" valign="middle"><textarea ng-model="form.cel77" ng-disabled="form_status"></textarea></td>
+      </tr>
+    </table>
+
+
+
+
+
+    <p>&nbsp;</p>
+    <p>
+    <div style="text-align:left">
+      D&eacute;cision :</b> <input type="text" ng-model="form.decision" size="90%" ng-disabled="form_status">
+    </div>
+    <br><br>
+    <div style="float:right; text-align:center; width:50%">
+      Nom et visa du directeur<br><input type="text" ng-model="form.nom_visa" size="30" ng-disabled="form_status">
+    </div>
+    </p>
+
+
+    <img src="img/qr.php?d={{form_status}}">
+
+    <div class="">
+      Ce document est la propri&eacute;t&eacute; de Cosider Construction, il ne peut &ecirc;tre reproduit sans son autorisation, ope.P04E01vD
+    </div>
+  </div>
+
+</form>
+
+<button onclick="pdf();">print to PDF</button>

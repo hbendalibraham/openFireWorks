@@ -1,0 +1,225 @@
+<link rel="stylesheet" type="text/css" href="css/form.css">
+
+<div class="article">
+  <div class="ui piled segment page">
+    <a class="print_ignore ui red ribbon label" ng-show="form_status">{{frm.n}}</a>
+
+	<img src="img/cosider.png" style="position: absolute;">
+
+	<table style="width: 100%; height: 100%;">
+		<tr style="height: 1%">
+			<td>
+				<div style="text-align: center;">
+					<h2>FICHE D'EVALUATION DES SOUS TRAITANTS</h2>
+				</div>
+				<hr class="lines">
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: left;vertical-align: top;">
+				<div style="text-align: right;">
+					Année: <input type="text" ng-model="frm.annee" ng-disabled="lock" size="10"> S: <input type="text" ng-model="frm.sem" ng-disabled="lock" size="5">
+				</div>
+
+				Sous traitant: <input type="text" ng-model="frm.st" ng-disabled="lock" size="75"> <br>
+				P&ocirc;le: <input type="text" ng-model="frm.pole" ng-disabled="lock" size="4"> NT: <input type="text" ng-model="frm.nt" ng-disabled="lock" size="5"> <br>
+				<p>&nbsp;</p>
+				<table class="tables">
+					<thead>
+					<tr>
+						<td>
+							.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Crit&egrave;re
+							<br><br>
+							Op&eacute;ration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+						</td>
+						<td>Conformit&eacute;s<br>1 &agrave; 10</td>
+						<td>D&eacute;lais<br>1 &agrave; 10</td>
+						<td>Moyens engag&eacute;s<br>1 &agrave; 10</td>
+						<td>Respect<br>disposition SST<br>1 &agrave; 5</td>
+						<td>Respect dispositions environnementales 1 &agrave; 10</td>
+						<td>Note obtenue 5 &agrave; 50 (C)</td>
+						<td>Observation</td>
+					</tr>
+					</thead>
+					<tr>
+						<td><textarea ng-model="frm.A1" ng-disabled="lock" style="heigth:100%;" placeholder="I) N&deg; Contrat Lot"></textarea> </td>
+						<td><textarea ng-model="frm.A2" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.A3" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.A4" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.A5" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.A6" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.A7" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.A8" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+					</tr>
+					<tr>
+						<td><textarea ng-model="frm.B1" ng-disabled="lock" style="heigth:100%;" placeholder="II)"></textarea> </td>
+						<td><textarea ng-model="frm.B2" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.B3" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.B4" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.B5" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.B6" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.B7" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.B8" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+					</tr>
+					<tr>
+						<td><textarea ng-model="frm.C1" ng-disabled="lock" style="heigth:100%;" placeholder="III)"></textarea> </td>
+						<td><textarea ng-model="frm.C2" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.C3" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.C4" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.C5" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.C6" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.C7" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.C8" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+					</tr>
+					<tr>
+						<td><textarea ng-model="frm.D1" ng-disabled="lock" style="heigth:100%;" placeholder="IV)"></textarea> </td>
+						<td><textarea ng-model="frm.D2" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.D3" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.D4" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.D5" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.D6" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.D7" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.D8" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+					</tr>
+					<tr>
+						<td><textarea ng-model="frm.E1" ng-disabled="lock" style="heigth:100%;" placeholder="V)"></textarea> </td>
+						<td><textarea ng-model="frm.E2" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.E3" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.E4" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.E5" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.E6" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.E7" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.E8" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+					</tr>
+					<tr>
+						<td> <b>TOTAL</b> </td>
+						<td><textarea ng-model="frm.F2" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.F3" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.F4" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.F5" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.F6" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.F7" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+						<td><textarea ng-model="frm.F8" ng-disabled="lock" style="heigth:100%;"></textarea> </td>
+					</tr>
+
+				</table>
+
+				<p>
+					<b><u>D&eacute;cision:</u></b> <input type="text" ng-model="frm.decision" ng-disabled="lock" size="75" >
+				</p>
+
+				<p style="text-align: right;">
+					<b><u>Nom et visa du directeur:</u></b> <input type="text" ng-model="frm.nvisa" ng-disabled="lock" >
+				</p>
+
+
+			</td>
+		</tr>
+		<tr style="height: 1%;">
+			<td>
+				<div style="text-align: right;">
+					<b>PRO-05-ENR-05</b>
+				</div>			
+			</td>
+		</tr>
+	</table>
+</div>
+
+
+<div class="ui piled segment page">
+
+
+	<img src="img/cosider.png" style="position: absolute;">
+
+	<table style="width: 100%; height: 100%;">
+		<tr style="height: 1%">
+			<td>
+				<div style="text-align: center;">
+					<h2>FICHE D'EVALUATION DES SOUS TRAITANTS</h2>
+				</div>
+				<hr class="lines">
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: left;vertical-align: top;">
+
+				<p style="text-align: center;">
+					<h3>Critères de notation</h3>
+				</p>
+				<p>
+					&nbsp;
+				</p>
+
+
+				<p>
+				<b>Qualit&eacute; :</b><br>
+					note maximale 10 pts : correspond &agrave; 0 NC.<br>
+					D&eacute;falcation de 1 pt pour chaque NC non lev&eacute;e.<br>
+				</p>
+
+				<p>
+				<b>D&eacute;lai :</b><br>
+					note maximale 10 pts : correspond &agrave; 0 jrs retard.<br>
+					D&eacute;falcation de 2 pts par tranche de (01) un mois de glissement (sauf s&rsquo;il a un ODS d&rsquo;arr&ecirc;t).<br>
+				</p>
+				
+				<p>
+				<b>Moyens engag&eacute;s :</b><br>
+					min 70% des moyens pr&eacute;vus sont engag&eacute;s<br>
+					
+					&ge; 70% : 10 points.<br>
+					Entre 70% et 50% : 07 points<br>
+					Entre 50% et 30% : 03 points<br>
+					&le; 30% : 0 point<br>
+				</p>
+				
+				<p>
+				Respect des dispositions SST :<br>
+					Port des EPI : 0/01/02<br>
+					04 registres l&eacute;gaux : 0/01/02<br>
+					Exploitation &eacute;lectricit&eacute; : 0/01/02<br>
+					Comit&eacute; inter entreprise : 0/01/02<br>
+					EPC : 0/1/2<br>
+					0 : mauvais, 01 : moyen, 02 : bon<br>
+				</p>
+
+				<p>
+				Respect des dispositions ENV :<br>
+					R&eacute;cup&eacute;ration des d&eacute;chets : 0 : d&eacute;chets non r&eacute;cup&eacute;r&eacute;s /05 : d&eacute;chets r&eacute;cup&eacute;r&eacute;s<br>
+					D&eacute;versement : 0 d&eacute;versement : 05 ; 01 cas de d&eacute;versement : 0<br>
+				</p>
+
+				Si le cumul des points C &ge; 25 : sous-traitant &agrave; maintenir.<br>
+				Si le cumul des points 10 &le; C &lt; 25 : sous-traitant &agrave; surveiller.<br>
+				Si le cumul des points C &lt; 10 : mesure suspensive pour six (06) mois.<br>
+
+
+
+			</td>
+		</tr>
+		<tr style="height: 1%;">
+			<td>
+				<div style="text-align: right;">
+					<b>PRO-05-ENR-05</b>
+				</div>			
+			</td>
+		</tr>
+	</table>
+
+
+</div>
+  <div class="ui labeled button floated right print_ignore" ng-show="form_status"  onclick="print();">
+    <div class="ui black button"><i class="print icon"></i></div>
+    <a class="ui basic left pointing label">Imprimer</a>
+  </div>
+  <div class="print_ignore" ng-show="!form_status"> 
+    <div class="ui labeled button floated right" ng-click="send_form('pro-05-enr-05')">
+      <div class="ui red button"><i class="send icon"></i></div>
+      <a class="ui basic left pointing label">Envoyer</a>
+    </div>
+    <div class="ui labeled button floated right" ng-click="clear_form()">
+      <div class="ui button"><i class="delete icon"></i></div>
+      <a class="ui basic left pointing label">Effacer</a>
+    </div>
+  </div>
+</div>
